@@ -1,0 +1,21 @@
+{% if not creator.othergames is empty %}
+<h2>Other Games</h2>
+<table class="table">
+<tr>
+    <th>Product</th>
+    <th>Publisher</th>
+    <th>Credit</th>
+</tr>
+{% for game in creator.othergames %}
+<tr>
+    <th><a href="/othergame/{{ game.othergame.othergameid }}/">
+        {{ game.othergame.gametitle }}
+        {% if game.othergame.gameline.gameline not in game.othergame.gametitle %}({{ game.othergame.gameline.gameline }}){% endif %}
+        {% if game.othergame.copyright is not empty %}({{ game.othergame.copyright }}){% endif %}
+    </a></th>
+    <th><a href="/publisher/{{ game.othergame.publisher.publisherid }}/">{{ game.othergame.publisher.publisher }}</a></th>
+    <th>{{ game.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

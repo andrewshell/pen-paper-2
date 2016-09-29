@@ -1,0 +1,33 @@
+{% if not creator.shortfictions is empty %}
+<h2>Short Fiction</h2>
+<table class="table">
+<tr>
+    <th>Story</th>
+    <th>Credit</th>
+</tr>
+{% for story in creator.shortfictions %}
+<tr>
+    <th><a href="/shortfiction/{{ story.shortfiction.shortfictionid }}/">
+        "{{ story.shortfiction.shortfictiontitle }}"</a>
+        {% if story.shortfiction.gameline.gameline not in story.shortfiction.shortfictiontitle %}({{ story.shortfiction.gameline.gameline }}){% endif %}
+        {% if not story.shortfiction.magazine is empty %}
+            in <a href="/magazine/{{ story.shortfiction.magazine.magazineid }}/">
+            {{ story.shortfiction.magazine.title.magtitle }} #{{ story.shortfiction.magazine.issuenumber}}
+            </a>
+        {% endif %}
+        {% if not story.shortfiction.fiction is empty %}
+            in <a href="/fiction/{{ story.shortfiction.fiction.fictionid }}/">
+            {{ story.shortfiction.fiction.fictiontitle }}
+            </a>
+        {% endif %}
+        {% if not story.shortfiction.book is empty %}
+            in <a href="/book/{{ story.shortfiction.book.bookid }}/">
+            {{ story.shortfiction.book.booktitle }}
+            </a>
+        {% endif %}
+    </th>
+    <th>{{ story.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

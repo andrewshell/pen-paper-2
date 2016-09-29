@@ -1,0 +1,13 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <h1>An Error Occured</h1>
+    {% if not data.message is empty %}
+        <p><?= htmlentities($data['message']); ?></p>
+    {% elseif not data is empty %}
+        <pre><?php print_r($data); ?></pre>
+    {% endif %}
+    <p><a href="/">Go home...</a></p>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% if not creator.fictions is empty %}
+<h2>Fiction</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+    <th>Publisher</th>
+    <th>Credit</th>
+</tr>
+{% for book in creator.fictions %}
+<tr>
+    <th><a href="/fiction/{{ book.fiction.fictionid }}/">
+        {{ book.fiction.fictiontitle }}
+        {% if book.fiction.gameline.gameline not in book.fiction.fictiontitle %}({{ book.fiction.gameline.gameline }}){% endif %}
+        {% if book.fiction.copyright is not empty %}({{ book.fiction.copyright }}){% endif %}
+    </a></th>
+    <th><a href="/publisher/{{ book.fiction.publisher.publisherid }}/">{{ book.fiction.publisher.publisher }}</a></th>
+    <th>{{ book.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="container">
+    <ul class="list-inline">
+    {% for letter in 'A' .. 'Z' %}
+        <li><a href="/creators/{{ letter }}/">{{ letter }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% if creators | length > 0 %}
+    <ul>
+{% for creator in creators %}
+    <li><a href="/creator/{{ creator.creatorid }}/">
+        {{ creator.lastname }}{{ creator.firstname ? ', ' : '' }}{{ creator.firstname }}
+    </a></li>
+{% endfor %}
+    </ul>
+{% else %}
+    <p>No Creators Found</p>
+{% endif %}
+</div>
+{% endblock content %}

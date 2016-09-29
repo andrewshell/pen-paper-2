@@ -1,0 +1,49 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="container">
+<h1>{{ creator.firstname }} {{ creator.lastname }}</h1>
+<dl class="dl-horizontal">
+    {% if not creator.photo is empty %}
+    <dt>Photo</dt><dd><img src="/images/rpgcreators/{{ creator.photo }}"></dd>
+    {% endif %}
+
+    {% if not creator.url is empty %}
+    <dt>URL</dt><dd><a href="{{ creator.url }}">{{ creator.url }}</a></dd>
+    {% endif %}
+
+    {% if not creator.email is empty %}
+    <dt>Email</dt><dd><a href="mailto:{{ creator.email }}">{{ creator.email }}</a></dd>
+    {% endif %}
+
+    {% if not creator.hometown is empty %}
+    <dt>Hometown</dt><dd>{{ creator.hometown }}</dd>
+    {% endif %}
+
+    {% if not creator.birth is empty %}
+    <dt>Birth</dt><dd>{{ creator.birth }}</dd>
+    {% endif %}
+
+    {% if not creator.death is empty %}
+    <dt>Death</dt><dd>{{ creator.death }}</dd>
+    {% endif %}
+
+    {% if not creator.creatornotes is empty %}
+    <dt>Notes</dt><dd>{{ creator.creatornotes | raw }}</dd>
+    {% endif %}
+
+    {% if date(creator.updated) > date('1900-01-01', 'UTC') %}
+    <dt>Updated</dt><dd>{{ creator.updated | date('Y-m-d', 'UTC') }}</dd>
+    {% endif %}
+</dl>
+
+{{ include('inc/creator_books.html.twig', {creator: creator}) }}
+{{ include('inc/creator_othergames.html.twig', {creator: creator}) }}
+{{ include('inc/creator_magazines.html.twig', {creator: creator}) }}
+{{ include('inc/creator_articles.html.twig', {creator: creator}) }}
+{{ include('inc/creator_fictions.html.twig', {creator: creator}) }}
+{{ include('inc/creator_shortfictions.html.twig', {creator: creator}) }}
+{{ include('inc/creator_comics.html.twig', {creator: creator}) }}
+
+</div>
+{% endblock content %}
