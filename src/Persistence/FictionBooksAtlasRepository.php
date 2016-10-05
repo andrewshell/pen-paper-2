@@ -33,11 +33,38 @@ class FictionBooksAtlasRepository implements FictionBooksRepository
             FictionBookMapper::class,
             $id,
             [
-
+                'game_line',
+                'publisher',
+                'fiction_book_creators' => function ($creator) {
+                    $creator->with([
+                        'creator',
+                        'credit',
+                    ]);
+                },
+                'short_stories' => function ($shortfiction) {
+                    $shortfiction->with([
+                        'game_line',
+                    ]);
+                },
             ]
         )->getArrayCopy();
 
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['fiction_book_creators'],
+            [
+                'string creator.last_name asc',
+                'string creator.first_name asc',
+            ]
+        );
+
+        $sorter->sort(
+            $entity['short_stories'],
+            [
+                'string title asc',
+            ]
+        );
 
         return $entity;
     }

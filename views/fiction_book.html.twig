@@ -1,8 +1,41 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h1>{{ fiction_book.title }}</h1>
+<h1>{{ fiction_book.title }}{% if not fiction_book.copyright is empty %} ({{ fiction_book.copyright }}){% endif %}</h1>
 <dl class="dl-horizontal">
-    {{ dump(fiction_book) }}
+    {% if not fiction_book.image is empty %}
+    <dt>Image</dt><dd><img src="/images/rpgfiction/{{ fiction_book.image }}"></dd>
+    {% endif %}
+
+    {% if not fiction_book.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ fiction_book.publisher.publisher_id }}/">{{ fiction_book.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not fiction_book.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ fiction_book.game_line.game_line_id }}/">{{ fiction_book.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {% if not fiction_book.product_code is empty %}
+    <dt>Product Code</dt><dd>{{ fiction_book.product_code }}</dd>
+    {% endif %}
+
+    {% if not fiction_book.isbn is empty %}
+    <dt>ISBN</dt><dd>{{ fiction_book.isbn }}</dd>
+    {% endif %}
+
+    {% if not fiction_book.page_count is empty %}
+    <dt># of Pages</dt><dd>{{ fiction_book.page_count }}</dd>
+    {% endif %}
+
+    {% if not fiction_book.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ fiction_book.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not fiction_book.notes is empty %}
+    <dt>Notes</dt><dd>{{ fiction_book.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/fiction_book_creators.html.twig', {entity: fiction_book}) }}
+    {{ include('inc/short_stories.html.twig', {entity: fiction_book}) }}
 </dl>
 {% endblock content %}

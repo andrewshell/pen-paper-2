@@ -1,19 +1,44 @@
 {% if not entity.fiction_book_creators is empty %}
+{% if entity.fiction_book_creators[0].creator is not empty %}
+    <h2>Creators</h2>
+{% else %}
+    <h2>Fiction Books</h2>
+{% endif %}
 <table class="table">
 <tr>
+    {% if entity.fiction_book_creators[0].creator is not empty %}
+    <th>Name</th>
+    {% endif %}
+    {% if entity.fiction_book_creators[0].fiction_book is not empty %}
     <th>Book</th>
+    {% if entity.fiction_book_creators[0].fiction_book.publisher is not empty %}
     <th>Publisher</th>
+    {% endif %}
+    {% endif %}
+    {% if entity.fiction_book_creators[0].credit is not empty %}
     <th>Credit</th>
+    {% endif %}
 </tr>
 {% for fiction_book_creator in entity.fiction_book_creators %}
 <tr>
+    {% if fiction_book_creator.creator is not empty %}
+    <th><a href="/creator/{{ fiction_book_creator.creator.creator_id }}/">
+        {{ fiction_book_creator.creator.last_name }}{{ fiction_book_creator.creator.first_name ? ', ' : '' }}{{ fiction_book_creator.creator.first_name }}
+    </a></th>
+    {% endif %}
+    {% if fiction_book_creator.fiction_book is not empty %}
     <th><a href="/fiction-book/{{ fiction_book_creator.fiction_book.fiction_book_id }}/">
         {{ fiction_book_creator.fiction_book.title }}
         {% if fiction_book_creator.fiction_book.game_line.game_line not in fiction_book_creator.fiction_book.title %}({{ fiction_book_creator.fiction_book.game_line.game_line }}){% endif %}
         {% if fiction_book_creator.fiction_book.copyright is not empty %}({{ fiction_book_creator.fiction_book.copyright }}){% endif %}
     </a></th>
+    {% if fiction_book_creator.fiction_book.publisher is not empty %}
     <th><a href="/publisher/{{ fiction_book_creator.fiction_book.publisher.publisher_id }}/">{{ fiction_book_creator.fiction_book.publisher.publisher }}</a></th>
+    {% endif %}
+    {% endif %}
+    {% if fiction_book_creator.credit is not empty %}
     <th>{{ fiction_book_creator.credit.credit }}</th>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>
