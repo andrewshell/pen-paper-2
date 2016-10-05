@@ -8,7 +8,9 @@
 <tr>
     <th><a href="/other-game/{{ other_game.other_game_id }}/">
         {{ other_game.title }}
+        {% if other_game.game_line is not empty %}
         {% if other_game.game_line.game_line not in other_game.title %}({{ other_game.game_line.game_line }}){% endif %}
+        {% endif %}
         {% if other_game.copyright is not empty %}({{ other_game.copyright }}){% endif %}
     </a></th>
 </tr>

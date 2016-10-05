@@ -8,8 +8,8 @@
 {% for short_story in entity.short_stories %}
 <tr>
     <th><a href="/short-story/{{ short_story.short_story_id }}/">
-        "{{ short_story.title }}"</a>
-    </th>
+        {{ short_story.title }}
+    </a></th>
     <th>{{ short_story.page }}</th>
 </tr>
 {% endfor %}

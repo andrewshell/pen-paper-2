@@ -1,14 +1,30 @@
 {% if not entity.publisher_lines is empty %}
+{% if entity.publisher_lines[0].publisher is not empty %}
+<h2>Publishers</h2>
+{% else %}
 <h2>Game Lines</h2>
+{% endif %}
 <table class="table">
 <tr>
+    {% if entity.publisher_lines[0].publisher is not empty %}
+    <th>Publisher</th>
+    {% endif %}
+    {% if entity.publisher_lines[0].game_line is not empty %}
     <th>Game Line</th>
+    {% endif %}
 </tr>
 {% for publisher_line in entity.publisher_lines %}
 <tr>
+    {% if publisher_line.publisher is not empty %}
+    <th><a href="/publisher/{{ publisher_line.publisher.publisher_id }}/">
+        {{ publisher_line.publisher.publisher }}</a>
+    </th>
+    {% endif %}
+    {% if publisher_line.game_line is not empty %}
     <th><a href="/game-line/{{ publisher_line.game_line.game_line_id }}/">
         {{ publisher_line.game_line.game_line }}</a>
     </th>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

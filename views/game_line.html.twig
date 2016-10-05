@@ -3,6 +3,16 @@
 {% block content %}
 <h1>{{ game_line.game_line }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(game_line) }}
+    {% if not game_line.genre is empty %}
+    <dt>Genre</dt><dd>{{ game_line.genre }}</dd>
+    {% endif %}
+
+    {{ include('inc/publisher_lines.html.twig', {entity: game_line}) }}
+    {{ include('inc/rpg_books.html.twig', {entity: game_line}) }}
+    {{ include('inc/other_games.html.twig', {entity: game_line}) }}
+    {{ include('inc/magazine_titles.html.twig', {entity: game_line}) }}
+    {{ include('inc/fiction_books.html.twig', {entity: game_line}) }}
+    {{ include('inc/comic_titles.html.twig', {entity: game_line}) }}
+    {{ include('inc/short_stories.html.twig', {entity: game_line}) }}
 </dl>
 {% endblock content %}
