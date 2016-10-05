@@ -3,6 +3,18 @@
 {% block content %}
 <h1>{{ magazine_title.title }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(magazine_title) }}
+    {% if not magazine_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ magazine_title.publisher.publisher_id }}/">{{ magazine_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not magazine_title.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ magazine_title.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not magazine_title.notes is empty %}
+    <dt>Notes</dt><dd>{{ magazine_title.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/magazine_issues.html.twig', {entity: magazine_title}) }}
 </dl>
 {% endblock content %}

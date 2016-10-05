@@ -1,15 +1,36 @@
 {% if not entity.magazine_issue_creators is empty %}
+{% if entity.magazine_issue_creators[0].creator is not empty %}
+    <h2>Creators</h2>
+{% else %}
+    <h2>Magazine Issues</h2>
+{% endif %}
 <table class="table">
 <tr>
+    {% if entity.other_game_creators[0].creator is not empty %}
+    <th>User</th>
+    {% endif %}
+    {% if entity.magazine_issue_creators[0].magazine_issue is not empty %}
     <th>Magazine Issue</th>
+    {% endif %}
+    {% if entity.magazine_issue_creators[0].credit is not empty %}
     <th>Credit</th>
+    {% endif %}
 </tr>
 {% for magazine_issue_creator in entity.magazine_issue_creators %}
 <tr>
+    {% if magazine_issue_creator.creator is not empty %}
+    <th><a href="/creator/{{ magazine_issue_creator.creator.creator_id }}/">
+        {{ magazine_issue_creator.creator.last_name }}{{ magazine_issue_creator.creator.first_name ? ', ' : '' }}{{ magazine_issue_creator.creator.first_name }}
+    </a></th>
+    {% endif %}
+    {% if magazine_issue_creator.magazine_issue is not empty %}
     <th><a href="/magazine-issue/{{ magazine_issue_creator.magazine_issue.magazine_issue_id }}/">
         {{ magazine_issue_creator.magazine_issue.magazine_title.title }} #{{ magazine_issue_creator.magazine_issue.issue_number}}
     </a> {% if magazine_issue_creator.magazine_issue.cover_date is not empty %}({{ magazine_issue_creator.magazine_issue.cover_date }}){% endif %}</th>
+    {% endif %}
+    {% if magazine_issue_creator.credit is not empty %}
     <th>{{ magazine_issue_creator.credit.credit }}</th>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

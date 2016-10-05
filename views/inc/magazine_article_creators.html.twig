@@ -1,4 +1,5 @@
 {% if not entity.magazine_article_creators is empty %}
+<h2>Magazine Articles</h2>
 <table class="table">
 <tr>
     <th>Article</th>
@@ -8,9 +9,9 @@
 <tr>
     <th><a href="/magazine-article/{{ magazine_article_creator.magazine_article.magazine_article_id }}/">
         &quot;{{ magazine_article_creator.magazine_article.title }}&quot;
-    </a> in <a href="/magazine/{{ magazine_article_creator.magazine_article.magazine.magazine_id }}/">
-        {{ magazine_article_creator.magazine_article.magazine.magazine_title.title }} #{{ magazine_article_creator.magazine_article.magazine.issue_number}}
-    </a> {% if magazine_article_creator.magazine_article.magazine.cover_date is not empty %}({{ magazine_article_creator.magazine_article.magazine.cover_date }}){% endif %}</th>
+    </a> in <a href="/magazine-issue/{{ magazine_article_creator.magazine_article.magazine_issue.magazine_issue_id }}/">
+        {{ magazine_article_creator.magazine_article.magazine_issue.magazine_title.title }} #{{ magazine_article_creator.magazine_article.magazine_issue.issue_number}}
+    </a> {% if magazine_article_creator.magazine_article.magazine_issue.cover_date is not empty %}({{ magazine_article_creator.magazine_article.magazine_issue.cover_date }}){% endif %}</th>
     <th>{{ magazine_article_creator.credit.credit }}</th>
 </tr>
 {% endfor %}

@@ -1,0 +1,15 @@
+{% if not entity.magazine_issues is empty %}
+<h2>Magazine Issues</h2>
+<table class="table">
+<tr>
+    <th>Issue</th>
+</tr>
+{% for magazine_issue in entity.magazine_issues %}
+<tr>
+    <th><a href="/magazine-issue/{{ magazine_issue.magazine_issue_id }}/">
+        {{ magazine_issue.magazine_title.title }} #{{ magazine_issue.issue_number}}
+    </a> {% if magazine_issue.cover_date is not empty %}({{ magazine_issue.cover_date }}){% endif %}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

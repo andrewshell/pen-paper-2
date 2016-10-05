@@ -20,7 +20,27 @@ class MagazineIssuesAtlasRepository implements MagazineIssuesRepository
             MagazineIssueMapper::class,
             $id,
             [
-
+                'magazine_title' => function ($title) {
+                    $title->with([
+                        'publisher',
+                    ]);
+                },
+                'magazine_articles' => function ($articles) {
+                    $articles->with([
+                        'game_line',
+                    ]);
+                },
+                'magazine_issue_creators' => function ($creator) {
+                    $creator->with([
+                        'creator',
+                        'credit',
+                    ]);
+                },
+                'short_stories' => function ($shortfiction) {
+                    $shortfiction->with([
+                        'game_line',
+                    ]);
+                },
             ]
         )->getArrayCopy();
 

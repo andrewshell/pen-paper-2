@@ -1,8 +1,30 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h1>{{ magazine_issue.title }}</h1>
+<h1>{{ magazine_issue.magazine_title.title }} #{{ magazine_issue.issue_number}}{% if magazine_issue.cover_date is not empty %} ({{ magazine_issue.cover_date }}){% endif %}</h1>
 <dl class="dl-horizontal">
-    {{ dump(magazine_issue) }}
+    {% if not magazine_issue.cover is empty %}
+    <dt>Cover</dt><dd><img src="/images/rpgmags/{{ magazine_issue.cover }}"></dd>
+    {% endif %}
+
+    {% if not magazine_issue.magazine_title is empty %}
+    <dt>Magazine Title</dt><dd><a href="/magazine-title/{{ magazine_issue.magazine_title.magazine_title_id }}/">{{ magazine_issue.magazine_title.title }}</a></dd>
+    {% endif %}
+
+    {% if not magazine_issue.magazine_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ magazine_issue.magazine_title.publisher.publisher_id }}/">{{ magazine_issue.magazine_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not magazine_issue.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ magazine_issue.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not magazine_issue.notes is empty %}
+    <dt>Notes</dt><dd>{{ magazine_issue.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/magazine_issue_creators.html.twig', {entity: magazine_issue}) }}
+    {{ include('inc/magazine_articles.html.twig', {entity: magazine_issue}) }}
+    {{ include('inc/short_stories.html.twig', {entity: magazine_issue}) }}
 </dl>
 {% endblock content %}

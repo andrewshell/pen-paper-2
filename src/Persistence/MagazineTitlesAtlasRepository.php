@@ -33,11 +33,25 @@ class MagazineTitlesAtlasRepository implements MagazineTitlesRepository
             MagazineTitleMapper::class,
             $id,
             [
-
+                'publisher',
+                'magazine_issues',
             ]
         )->getArrayCopy();
 
+        foreach (array_keys($entity['magazine_issues']) as $k) {
+            $entity['magazine_issues'][$k]['magazine_title'] = [
+                'title' => $entity['title'],
+            ];
+        }
+
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['magazine_issues'],
+            [
+                'int issue_number desc',
+            ]
+        );
 
         return $entity;
     }
