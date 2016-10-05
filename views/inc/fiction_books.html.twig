@@ -1,0 +1,15 @@
+{% if not entity.fiction_books is empty %}
+<h2>Fiction Books</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+</tr>
+{% for fiction_book in entity.fiction_books %}
+<tr>
+    <th><a href="/other-game/{{ fiction_book.fiction_book_id }}/">
+        {{ fiction_book.title }}
+    </a></th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

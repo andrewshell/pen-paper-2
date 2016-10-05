@@ -1,0 +1,17 @@
+{% if not entity.rpg_books is empty %}
+<h2>RPG Books</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+</tr>
+{% for rpg_book in entity.rpg_books %}
+<tr>
+    <th><a href="/other-game/{{ rpg_book.rpg_book_id }}/">
+        {{ rpg_book.title }}
+        {% if rpg_book.game_line.game_line not in rpg_book.title %}({{ rpg_book.game_line.game_line }}){% endif %}
+        {% if rpg_book.copyright is not empty %}({{ rpg_book.copyright }}){% endif %}
+    </a></th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

@@ -82,8 +82,8 @@ class Sorter
                 $cmp = ($aVal < $bVal) ? -1 : 1;
             }
         } elseif (0 === strcmp('string', $sort[0])) {
-            $aVal = strval($aVal);
-            $bVal = strval($bVal);
+            $aVal = strtolower(strval($aVal));
+            $bVal = strtolower(strval($bVal));
 
             if (0 === strcmp($aVal, $bVal)) {
                 $cmp = $this->innerSort($a, $b, $orderBy);

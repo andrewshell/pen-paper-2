@@ -1,0 +1,17 @@
+{% if not entity.other_games is empty %}
+<h2>Other Games</h2>
+<table class="table">
+<tr>
+    <th>Product</th>
+</tr>
+{% for other_game in entity.other_games %}
+<tr>
+    <th><a href="/other-game/{{ other_game.other_game_id }}/">
+        {{ other_game.title }}
+        {% if other_game.game_line.game_line not in other_game.title %}({{ other_game.game_line.game_line }}){% endif %}
+        {% if other_game.copyright is not empty %}({{ other_game.copyright }}){% endif %}
+    </a></th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

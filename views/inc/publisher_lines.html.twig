@@ -1,0 +1,15 @@
+{% if not entity.publisher_lines is empty %}
+<h2>Game Lines</h2>
+<table class="table">
+<tr>
+    <th>Game Line</th>
+</tr>
+{% for publisher_line in entity.publisher_lines %}
+<tr>
+    <th><a href="/game-line/{{ publisher_line.game_line.game_line_id }}/">
+        {{ publisher_line.game_line.game_line }}</a>
+    </th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

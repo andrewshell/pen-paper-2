@@ -1,0 +1,15 @@
+{% if not entity.comic_titles is empty %}
+<h2>Comic Titles</h2>
+<table class="table">
+<tr>
+    <th>Title</th>
+</tr>
+{% for comic_title in entity.comic_titles %}
+<tr>
+    <th><a href="/other-game/{{ comic_title.comic_title_id }}/">
+        {{ comic_title.title }}
+    </a></th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

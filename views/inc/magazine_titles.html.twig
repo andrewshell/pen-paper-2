@@ -1,0 +1,15 @@
+{% if not entity.magazine_titles is empty %}
+<h2>Magazine Titles</h2>
+<table class="table">
+<tr>
+    <th>Title</th>
+</tr>
+{% for magazine_title in entity.magazine_titles %}
+<tr>
+    <th><a href="/other-game/{{ magazine_title.magazine_title_id }}/">
+        {{ magazine_title.title }}
+    </a></th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

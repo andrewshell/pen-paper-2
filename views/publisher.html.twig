@@ -3,6 +3,23 @@
 {% block content %}
 <h1>{{ publisher.publisher }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(publisher) }}
+    {% if not publisher.image is empty %}
+    <dt>Image</dt><dd><img src="/images/rpgpublisher/{{ publisher.image }}"></dd>
+    {% endif %}
+
+    {% if not publisher.url is empty %}
+    <dt>Homepage</dt><dd><a href="{{ publisher.url }}">{{ publisher.url }}</a></dd>
+    {% endif %}
+
+    {% if not publisher.notes is empty %}
+    <dt>Notes</dt><dd>{{ publisher.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/publisher_lines.html.twig', {entity: publisher}) }}
+    {{ include('inc/rpg_books.html.twig', {entity: publisher}) }}
+    {{ include('inc/other_games.html.twig', {entity: publisher}) }}
+    {{ include('inc/magazine_titles.html.twig', {entity: publisher}) }}
+    {{ include('inc/fiction_books.html.twig', {entity: publisher}) }}
+    {{ include('inc/comic_titles.html.twig', {entity: publisher}) }}
 </dl>
 {% endblock content %}
