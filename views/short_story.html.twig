@@ -23,6 +23,14 @@
     <dt>Page #</dt><dd>{{ short_story.page }}</dd>
     {% endif %}
 
+    {% if not short_story.fiction_book.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ short_story.fiction_book.publisher.publisher_id }}/">{{ short_story.fiction_book.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not short_story.rpg_book.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ short_story.rpg_book.publisher.publisher_id }}/">{{ short_story.rpg_book.publisher.publisher }}</a></dd>
+    {% endif %}
+
     {% if not short_story.magazine_issue.magazine_title.publisher is empty %}
     <dt>Publisher</dt><dd><a href="/publisher/{{ short_story.magazine_issue.magazine_title.publisher.publisher_id }}/">{{ short_story.magazine_issue.magazine_title.publisher.publisher }}</a></dd>
     {% endif %}
