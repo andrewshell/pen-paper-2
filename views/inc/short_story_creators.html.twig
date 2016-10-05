@@ -1,11 +1,29 @@
 {% if not entity.short_story_creators is empty %}
+{% if entity.short_story_creators[0].creator is not empty %}
+    <h2>Creators</h2>
+{% else %}
+    <h2>Short Stories</h2>
+{% endif %}
 <table class="table">
 <tr>
+    {% if entity.short_story_creators[0].creator is not empty %}
+    <th>Name</th>
+    {% endif %}
+    {% if entity.short_story_creators[0].short_story is not empty %}
     <th>Story</th>
+    {% endif %}
+    {% if entity.short_story_creators[0].credit is not empty %}
     <th>Credit</th>
+    {% endif %}
 </tr>
 {% for short_story_creator in entity.short_story_creators %}
 <tr>
+    {% if short_story_creator.creator is not empty %}
+    <th><a href="/creator/{{ short_story_creator.creator.creator_id }}/">
+        {{ short_story_creator.creator.last_name }}{{ short_story_creator.creator.first_name ? ', ' : '' }}{{ short_story_creator.creator.first_name }}
+    </a></th>
+    {% endif %}
+    {% if short_story_creator.short_story is not empty %}
     <th><a href="/short-story/{{ short_story_creator.short_story.short_story_id }}/">
         "{{ short_story_creator.short_story.title }}"</a>
         {% if short_story_creator.short_story.game_line.game_line not in short_story_creator.short_story.title %}({{ short_story_creator.short_story.game_line.game_line }}){% endif %}
@@ -25,7 +43,10 @@
             </a>
         {% endif %}
     </th>
+    {% endif %}
+    {% if short_story_creator.credit is not empty %}
     <th>{{ short_story_creator.credit.credit }}</th>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

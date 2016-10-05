@@ -4,7 +4,7 @@
 <h1>{{ magazine_article.title }}</h1>
 <dl class="dl-horizontal">
     {% if magazine_article.magazine_issue is not empty %}
-    <dt>Magazine Issue</dt><dd><a href="/magazine-issue/{{ magazine_article.magazine_issue.magazine_issue_id }}/">
+    <dt>Issue</dt><dd><a href="/magazine-issue/{{ magazine_article.magazine_issue.magazine_issue_id }}/">
         {{ magazine_article.magazine_issue.magazine_title.title }} #{{ magazine_article.magazine_issue.issue_number}}
     </a> {% if magazine_article.magazine_issue.cover_date is not empty %}({{ magazine_article.magazine_issue.cover_date }}){% endif %}</dd>
     {% endif %}

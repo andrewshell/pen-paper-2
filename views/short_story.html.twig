@@ -3,6 +3,42 @@
 {% block content %}
 <h1>{{ short_story.title }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(short_story) }}
+    {% if short_story.fiction_book is not empty %}
+    <dt>Fiction Book</dt><dd><a href="/fiction-book/{{ short_story.fiction_book.fiction_book_id }}/">
+        {{ short_story.fiction_book.title }}</a></dd>
+    {% endif %}
+
+    {% if short_story.rpg_book is not empty %}
+    <dt>RPG Book</dt><dd><a href="/rpg-book/{{ short_story.rpg_book.rpg_book_id }}/">
+        {{ short_story.rpg_book.title }}</a></dd>
+    {% endif %}
+
+    {% if short_story.magazine_issue is not empty %}
+    <dt>Issue</dt><dd><a href="/magazine-issue/{{ short_story.magazine_issue.magazine_issue_id }}/">
+        {{ short_story.magazine_issue.magazine_title.title }} #{{ short_story.magazine_issue.issue_number}}
+    </a> {% if short_story.magazine_issue.cover_date is not empty %}({{ short_story.magazine_issue.cover_date }}){% endif %}</dd>
+    {% endif %}
+
+    {% if short_story.page is not empty %}
+    <dt>Page #</dt><dd>{{ short_story.page }}</dd>
+    {% endif %}
+
+    {% if not short_story.magazine_issue.magazine_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ short_story.magazine_issue.magazine_title.publisher.publisher_id }}/">{{ short_story.magazine_issue.magazine_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not short_story.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ short_story.game_line.game_line_id }}/">{{ short_story.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {% if not short_story.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ short_story.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not short_story.notes is empty %}
+    <dt>Notes</dt><dd>{{ short_story.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/short_story_creators.html.twig', {entity: short_story}) }}
 </dl>
 {% endblock content %}
