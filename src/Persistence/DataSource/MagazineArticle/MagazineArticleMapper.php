@@ -2,9 +2,9 @@
 namespace PenPaper\Persistence\DataSource\MagazineArticle;
 
 use Atlas\Orm\Mapper\AbstractMapper;
+use PenPaper\Persistence\DataSource\MagazineArticleCreator\MagazineArticleCreatorMapper;
 use PenPaper\Persistence\DataSource\GameLine\GameLineMapper;
-use PenPaper\Persistence\DataSource\Magazine\MagazineMapper;
-
+use PenPaper\Persistence\DataSource\MagazineIssue\MagazineIssueMapper;
 /**
  * @inheritdoc
  */
@@ -15,7 +15,8 @@ class MagazineArticleMapper extends AbstractMapper
      */
     protected function setRelated()
     {
-        $this->manyToOne('gameline', GameLineMapper::class);
-        $this->manyToOne('magazine', MagazineMapper::class);
+        $this->oneToMany('magazine_article_creators', MagazineArticleCreatorMapper::class);
+        $this->manyToOne('game_line', GameLineMapper::class);
+        $this->manyToOne('magazine_issue', MagazineIssueMapper::class);
     }
 }

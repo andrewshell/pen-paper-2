@@ -1,0 +1,17 @@
+{% if not entity.magazine_issue_creators is empty %}
+<h2>Magazine Issues</h2>
+<table class="table">
+<tr>
+    <th>Magazine Issue</th>
+    <th>Credit</th>
+</tr>
+{% for magazine_issue_creator in entity.magazine_issue_creators %}
+<tr>
+    <th><a href="/magazine-issue/{{ magazine_issue_creator.magazine_issue.magazine_issue_id }}/">
+        {{ magazine_issue_creator.magazine_issue.magazine_title.title }} #{{ magazine_issue_creator.magazine_issue.issue_number}}
+    </a> {% if magazine_issue_creator.magazine_issue.cover_date is not empty %}({{ magazine_issue_creator.magazine_issue.cover_date }}){% endif %}</th>
+    <th>{{ magazine_issue_creator.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

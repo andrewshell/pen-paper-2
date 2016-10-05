@@ -16,7 +16,7 @@ class GameLineTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_gamelines';
+        return 'game_lines';
     }
 
     /**
@@ -25,8 +25,8 @@ class GameLineTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'gamelineid',
-            'gameline',
+            'game_line_id',
+            'game_line',
             'genre',
             'keywords',
         ];
@@ -38,18 +38,18 @@ class GameLineTable extends AbstractTable
     public function getCols()
     {
         return [
-            'gamelineid' => (object) [
-                'name' => 'gamelineid',
+            'game_line_id' => (object) [
+                'name' => 'game_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
+                'default' => null,
+                'autoinc' => true,
                 'primary' => true,
             ],
-            'gameline' => (object) [
-                'name' => 'gameline',
+            'game_line' => (object) [
+                'name' => 'game_line',
                 'type' => 'varchar',
                 'size' => 100,
                 'scale' => null,
@@ -87,7 +87,7 @@ class GameLineTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'gamelineid',
+            'game_line_id',
         ];
     }
 
@@ -96,7 +96,7 @@ class GameLineTable extends AbstractTable
      */
     public function getAutoinc()
     {
-        return '';
+        return 'game_line_id';
     }
 
     /**
@@ -105,8 +105,8 @@ class GameLineTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'gamelineid' => '0',
-            'gameline' => '',
+            'game_line_id' => null,
+            'game_line' => '',
             'genre' => '',
             'keywords' => '',
         ];

@@ -1,0 +1,17 @@
+{% if not entity.rpg_book_creators is empty %}
+<h2>Credits</h2>
+<table class="table">
+<tr>
+    <th>Name</th>
+    <th>Credit</th>
+</tr>
+{% for rpg_book_creator in entity.rpg_book_creators %}
+<tr>
+    <th><a href="/creator/{{ rpg_book_creator.creator.creator_id }}/">
+        {{ rpg_book_creator.creator.last_name }}{{ rpg_book_creator.creator.first_name ? ', ' : '' }}{{ rpg_book_creator.creator.first_name }}
+    </a></th>
+    <th>{{ rpg_book_creator.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

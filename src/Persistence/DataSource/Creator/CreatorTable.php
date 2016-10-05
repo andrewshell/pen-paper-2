@@ -16,7 +16,7 @@ class CreatorTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_creators';
+        return 'creators';
     }
 
     /**
@@ -25,17 +25,16 @@ class CreatorTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'creatorid',
-            'firstname',
-            'lastname',
+            'creator_id',
+            'first_name',
+            'last_name',
             'url',
             'email',
-            'creatornotes',
+            'notes',
             'photo',
             'birth',
             'death',
             'hometown',
-            'updated',
         ];
     }
 
@@ -45,18 +44,18 @@ class CreatorTable extends AbstractTable
     public function getCols()
     {
         return [
-            'creatorid' => (object) [
-                'name' => 'creatorid',
+            'creator_id' => (object) [
+                'name' => 'creator_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
-            'firstname' => (object) [
-                'name' => 'firstname',
+            'first_name' => (object) [
+                'name' => 'first_name',
                 'type' => 'varchar',
                 'size' => 100,
                 'scale' => null,
@@ -65,8 +64,8 @@ class CreatorTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'lastname' => (object) [
-                'name' => 'lastname',
+            'last_name' => (object) [
+                'name' => 'last_name',
                 'type' => 'varchar',
                 'size' => 100,
                 'scale' => null,
@@ -95,8 +94,8 @@ class CreatorTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'creatornotes' => (object) [
-                'name' => 'creatornotes',
+            'notes' => (object) [
+                'name' => 'notes',
                 'type' => 'text',
                 'size' => null,
                 'scale' => null,
@@ -145,16 +144,6 @@ class CreatorTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'updated' => (object) [
-                'name' => 'updated',
-                'type' => 'date',
-                'size' => null,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0000-00-00',
-                'autoinc' => false,
-                'primary' => false,
-            ],
         ];
     }
 
@@ -164,7 +153,7 @@ class CreatorTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'creatorid',
+            'creator_id',
         ];
     }
 
@@ -182,17 +171,16 @@ class CreatorTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'creatorid' => '0',
-            'firstname' => '',
-            'lastname' => '',
+            'creator_id' => null,
+            'first_name' => '',
+            'last_name' => '',
             'url' => '',
             'email' => '',
-            'creatornotes' => null,
+            'notes' => null,
             'photo' => '',
             'birth' => '',
             'death' => '',
             'hometown' => '',
-            'updated' => '0000-00-00',
         ];
     }
 }

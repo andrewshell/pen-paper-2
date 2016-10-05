@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/publishers/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if publishers | length > 0 %}
+    <ul>
+    {% for publisher in publishers %}
+        <li><a href="/publisher/{{ publisher.publisher_id }}/">
+            {{ publisher.publisher }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Publishers Found</p>
+{% endif %}
+{% endblock content %}

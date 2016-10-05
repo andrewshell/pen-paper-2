@@ -16,7 +16,7 @@ class GameSystemTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_gamesystems';
+        return 'game_systems';
     }
 
     /**
@@ -25,8 +25,8 @@ class GameSystemTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'systemid',
-            'gamesystem',
+            'game_system_id',
+            'game_system',
         ];
     }
 
@@ -36,18 +36,18 @@ class GameSystemTable extends AbstractTable
     public function getCols()
     {
         return [
-            'systemid' => (object) [
-                'name' => 'systemid',
+            'game_system_id' => (object) [
+                'name' => 'game_system_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
+                'default' => null,
+                'autoinc' => true,
                 'primary' => true,
             ],
-            'gamesystem' => (object) [
-                'name' => 'gamesystem',
+            'game_system' => (object) [
+                'name' => 'game_system',
                 'type' => 'varchar',
                 'size' => 100,
                 'scale' => null,
@@ -65,7 +65,7 @@ class GameSystemTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'systemid',
+            'game_system_id',
         ];
     }
 
@@ -74,7 +74,7 @@ class GameSystemTable extends AbstractTable
      */
     public function getAutoinc()
     {
-        return '';
+        return 'game_system_id';
     }
 
     /**
@@ -83,8 +83,8 @@ class GameSystemTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'systemid' => '0',
-            'gamesystem' => '',
+            'game_system_id' => null,
+            'game_system' => '',
         ];
     }
 }

@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/other-games/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if other_games | length > 0 %}
+    <ul>
+    {% for other_game in other_games %}
+        <li><a href="/other-game/{{ other_game.other_game_id }}/">
+            {{ other_game.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Other Games Found</p>
+{% endif %}
+{% endblock content %}

@@ -16,7 +16,7 @@ class GameTypeTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_gametypes';
+        return 'game_types';
     }
 
     /**
@@ -25,8 +25,8 @@ class GameTypeTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'gametypeid',
-            'gametype',
+            'game_type_id',
+            'game_type',
         ];
     }
 
@@ -36,18 +36,18 @@ class GameTypeTable extends AbstractTable
     public function getCols()
     {
         return [
-            'gametypeid' => (object) [
-                'name' => 'gametypeid',
+            'game_type_id' => (object) [
+                'name' => 'game_type_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
+                'default' => null,
+                'autoinc' => true,
                 'primary' => true,
             ],
-            'gametype' => (object) [
-                'name' => 'gametype',
+            'game_type' => (object) [
+                'name' => 'game_type',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -65,7 +65,7 @@ class GameTypeTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'gametypeid',
+            'game_type_id',
         ];
     }
 
@@ -74,7 +74,7 @@ class GameTypeTable extends AbstractTable
      */
     public function getAutoinc()
     {
-        return '';
+        return 'game_type_id';
     }
 
     /**
@@ -83,8 +83,8 @@ class GameTypeTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'gametypeid' => '0',
-            'gametype' => '',
+            'game_type_id' => null,
+            'game_type' => '',
         ];
     }
 }

@@ -16,7 +16,7 @@ class ReleaseMonthTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_release_months';
+        return 'release_months';
     }
 
     /**
@@ -25,7 +25,7 @@ class ReleaseMonthTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'monthid',
+            'release_month_id',
             'month',
         ];
     }
@@ -36,13 +36,13 @@ class ReleaseMonthTable extends AbstractTable
     public function getCols()
     {
         return [
-            'monthid' => (object) [
-                'name' => 'monthid',
+            'release_month_id' => (object) [
+                'name' => 'release_month_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
@@ -65,7 +65,7 @@ class ReleaseMonthTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'monthid',
+            'release_month_id',
         ];
     }
 
@@ -83,7 +83,7 @@ class ReleaseMonthTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'monthid' => '0',
+            'release_month_id' => null,
             'month' => '',
         ];
     }

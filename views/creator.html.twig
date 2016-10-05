@@ -1,15 +1,20 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<div class="container">
-<h1>{{ creator.firstname }} {{ creator.lastname }}</h1>
+<h1>{{ creator.first_name }} {{ creator.last_name }}</h1>
 <dl class="dl-horizontal">
     {% if not creator.photo is empty %}
     <dt>Photo</dt><dd><img src="/images/rpgcreators/{{ creator.photo }}"></dd>
     {% endif %}
 
     {% if not creator.url is empty %}
-    <dt>URL</dt><dd><a href="{{ creator.url }}">{{ creator.url }}</a></dd>
+    <dt>Homepage</dt><dd><a href="{{ creator.url }}">{{ creator.url }}</a></dd>
+    {% endif %}
+
+    {% if not creator.urls is empty %}
+    {% for url in creator.urls %}
+    <dt>Other URL</dt><dd><a href="{{ url.url }}">{{ url.title }}</a></dd>
+    {% endfor %}
     {% endif %}
 
     {% if not creator.email is empty %}
@@ -28,22 +33,17 @@
     <dt>Death</dt><dd>{{ creator.death }}</dd>
     {% endif %}
 
-    {% if not creator.creatornotes is empty %}
-    <dt>Notes</dt><dd>{{ creator.creatornotes | raw }}</dd>
-    {% endif %}
-
-    {% if date(creator.updated) > date('1900-01-01', 'UTC') %}
-    <dt>Updated</dt><dd>{{ creator.updated | date('Y-m-d', 'UTC') }}</dd>
+    {% if not creator.notes is empty %}
+    <dt>Notes</dt><dd>{{ creator.notes | raw }}</dd>
     {% endif %}
 </dl>
 
-{{ include('inc/creator_books.html.twig', {creator: creator}) }}
-{{ include('inc/creator_othergames.html.twig', {creator: creator}) }}
-{{ include('inc/creator_magazines.html.twig', {creator: creator}) }}
-{{ include('inc/creator_articles.html.twig', {creator: creator}) }}
-{{ include('inc/creator_fictions.html.twig', {creator: creator}) }}
-{{ include('inc/creator_shortfictions.html.twig', {creator: creator}) }}
-{{ include('inc/creator_comics.html.twig', {creator: creator}) }}
+{{ include('inc/rpg_book_creators.html.twig', {entity: creator}) }}
+{{ include('inc/other_game_creators.html.twig', {entity: creator}) }}
+{{ include('inc/magazine_issue_creators.html.twig', {entity: creator}) }}
+{{ include('inc/magazine_article_creators.html.twig', {entity: creator}) }}
+{{ include('inc/fiction_book_creators.html.twig', {entity: creator}) }}
+{{ include('inc/short_story_creators.html.twig', {entity: creator}) }}
+{{ include('inc/comic_issue_creators.html.twig', {entity: creator}) }}
 
-</div>
 {% endblock content %}

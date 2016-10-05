@@ -4,7 +4,6 @@ namespace PenPaper\Persistence;
 use Atlas\Orm\AtlasContainer;
 use Aura\Di\Container;
 use Aura\Di\ContainerConfig;
-use PenPaper\Persistence\DataSource;
 
 class Config extends ContainerConfig
 {
@@ -23,34 +22,13 @@ class Config extends ContainerConfig
             'attributes' => [],
         ];
 
-        $di->setters[AtlasContainer::class]['setMappers'] = [
-            DataSource\ArticleCreator\ArticleCreatorMapper::class,
-            DataSource\Book\BookMapper::class,
-            DataSource\BookCreator\BookCreatorMapper::class,
-            DataSource\Comic\ComicMapper::class,
-            DataSource\ComicCreator\ComicCreatorMapper::class,
-            DataSource\ComicSpecial\ComicSpecialMapper::class,
-            DataSource\ComicSpecialCreator\ComicSpecialCreatorMapper::class,
-            DataSource\ComicTitle\ComicTitleMapper::class,
-            DataSource\Creator\CreatorMapper::class,
-            DataSource\Credit\CreditMapper::class,
-            DataSource\Fiction\FictionMapper::class,
-            DataSource\FictionCreator\FictionCreatorMapper::class,
-            DataSource\GameLine\GameLineMapper::class,
-            DataSource\GameSystem\GameSystemMapper::class,
-            DataSource\GameType\GameTypeMapper::class,
-            DataSource\Magazine\MagazineMapper::class,
-            DataSource\MagazineArticle\MagazineArticleMapper::class,
-            DataSource\MagazineCreator\MagazineCreatorMapper::class,
-            DataSource\MagazineTitle\MagazineTitleMapper::class,
-            DataSource\OtherGame\OtherGameMapper::class,
-            DataSource\OtherGameCreator\OtherGameCreatorMapper::class,
-            DataSource\Publisher\PublisherMapper::class,
-            DataSource\PublisherLine\PublisherLineMapper::class,
-            DataSource\ReleaseMonth\ReleaseMonthMapper::class,
-            DataSource\ShortFiction\ShortFictionMapper::class,
-            DataSource\ShortFictionCreator\ShortFictionCreatorMapper::class,
-        ];
+        $pattern = __DIR__ . '/DataSource/*/*Mapper.php';
+        $mappers = glob($pattern);
+        foreach ($mappers as $i => $file) {
+            $mappers[$i] = 'PenPaper\\Persistence\\' . str_replace('/', '\\', substr($file, strpos($file, 'DataSource/'), -4));
+        }
+
+        $di->setters[AtlasContainer::class]['setMappers'] = $mappers;
     }
 
     public function modify(Container $di)

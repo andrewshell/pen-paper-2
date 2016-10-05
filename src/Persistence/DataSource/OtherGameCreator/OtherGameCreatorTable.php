@@ -16,7 +16,7 @@ class OtherGameCreatorTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_othergamecreators';
+        return 'other_game_creators';
     }
 
     /**
@@ -25,10 +25,10 @@ class OtherGameCreatorTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'othergamecreatorid',
-            'creatorid',
-            'othergameid',
-            'creditid',
+            'other_game_creator_id',
+            'creator_id',
+            'other_game_id',
+            'credit_id',
         ];
     }
 
@@ -38,43 +38,43 @@ class OtherGameCreatorTable extends AbstractTable
     public function getCols()
     {
         return [
-            'othergamecreatorid' => (object) [
-                'name' => 'othergamecreatorid',
+            'other_game_creator_id' => (object) [
+                'name' => 'other_game_creator_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
+                'default' => null,
+                'autoinc' => true,
                 'primary' => true,
             ],
-            'creatorid' => (object) [
-                'name' => 'creatorid',
+            'creator_id' => (object) [
+                'name' => 'creator_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'othergameid' => (object) [
-                'name' => 'othergameid',
+            'other_game_id' => (object) [
+                'name' => 'other_game_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'creditid' => (object) [
-                'name' => 'creditid',
+            'credit_id' => (object) [
+                'name' => 'credit_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -87,7 +87,7 @@ class OtherGameCreatorTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'othergamecreatorid',
+            'other_game_creator_id',
         ];
     }
 
@@ -96,7 +96,7 @@ class OtherGameCreatorTable extends AbstractTable
      */
     public function getAutoinc()
     {
-        return '';
+        return 'other_game_creator_id';
     }
 
     /**
@@ -105,10 +105,10 @@ class OtherGameCreatorTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'othergamecreatorid' => '0',
-            'creatorid' => '0',
-            'othergameid' => '0',
-            'creditid' => '0',
+            'other_game_creator_id' => null,
+            'creator_id' => null,
+            'other_game_id' => null,
+            'credit_id' => null,
         ];
     }
 }

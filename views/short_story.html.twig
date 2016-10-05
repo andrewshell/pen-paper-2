@@ -1,0 +1,8 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1>{{ short_story.title }}</h1>
+<dl class="dl-horizontal">
+    {{ dump(short_story) }}
+</dl>
+{% endblock content %}

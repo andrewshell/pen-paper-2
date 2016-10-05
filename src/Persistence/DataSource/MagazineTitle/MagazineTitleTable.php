@@ -16,7 +16,7 @@ class MagazineTitleTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_magazine_titles';
+        return 'magazine_titles';
     }
 
     /**
@@ -25,13 +25,11 @@ class MagazineTitleTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'magtitleid',
-            'magtitle',
-            'magtitlenotes',
-            'magtitleurl',
-            'publisherid',
-            'publisherid2',
-            'publisherid3',
+            'magazine_title_id',
+            'title',
+            'notes',
+            'url',
+            'publisher_id',
         ];
     }
 
@@ -41,18 +39,18 @@ class MagazineTitleTable extends AbstractTable
     public function getCols()
     {
         return [
-            'magtitleid' => (object) [
-                'name' => 'magtitleid',
+            'magazine_title_id' => (object) [
+                'name' => 'magazine_title_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
-            'magtitle' => (object) [
-                'name' => 'magtitle',
+            'title' => (object) [
+                'name' => 'title',
                 'type' => 'varchar',
                 'size' => 200,
                 'scale' => null,
@@ -61,8 +59,8 @@ class MagazineTitleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'magtitlenotes' => (object) [
-                'name' => 'magtitlenotes',
+            'notes' => (object) [
+                'name' => 'notes',
                 'type' => 'text',
                 'size' => null,
                 'scale' => null,
@@ -71,8 +69,8 @@ class MagazineTitleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'magtitleurl' => (object) [
-                'name' => 'magtitleurl',
+            'url' => (object) [
+                'name' => 'url',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -81,33 +79,13 @@ class MagazineTitleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'publisherid' => (object) [
-                'name' => 'publisherid',
+            'publisher_id' => (object) [
+                'name' => 'publisher_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'publisherid2' => (object) [
-                'name' => 'publisherid2',
-                'type' => 'int',
-                'size' => 11,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'publisherid3' => (object) [
-                'name' => 'publisherid3',
-                'type' => 'int',
-                'size' => 11,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -120,7 +98,7 @@ class MagazineTitleTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'magtitleid',
+            'magazine_title_id',
         ];
     }
 
@@ -138,13 +116,11 @@ class MagazineTitleTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'magtitleid' => '0',
-            'magtitle' => '',
-            'magtitlenotes' => null,
-            'magtitleurl' => '',
-            'publisherid' => '0',
-            'publisherid2' => '0',
-            'publisherid3' => '0',
+            'magazine_title_id' => null,
+            'title' => '',
+            'notes' => null,
+            'url' => '',
+            'publisher_id' => null,
         ];
     }
 }

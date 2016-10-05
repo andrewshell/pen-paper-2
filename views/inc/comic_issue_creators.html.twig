@@ -1,0 +1,19 @@
+{% if not entity.comic_issue_creators is empty %}
+<h2>Comic Issues</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+    <th>Publisher</th>
+    <th>Credit</th>
+</tr>
+{% for comic_issue_creator in entity.comic_issue_creators %}
+<tr>
+    <th><a href="/comic-issue/{{ comic_issue_creator.comic_issue.comic_issue_id }}/">
+        {{ comic_issue_creator.comic_issue.comic_title.title }} #{{ comic_issue_creator.comic_issue.issue_number}}
+    </a> {% if comic_issue_creator.comic_issue.cover_date is not empty %}({{ comic_issue_creator.comic_issue.cover_date }}){% endif %}</th>
+    <th><a href="/publisher/{{ comic_issue_creator.comic_issue.comic_title.publisher.publisher_id }}/">{{ comic_issue_creator.comic_issue.comic_title.publisher.publisher }}</a></th>
+    <th>{{ comic_issue_creator.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

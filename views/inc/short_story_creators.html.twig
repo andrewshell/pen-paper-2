@@ -1,0 +1,33 @@
+{% if not entity.short_story_creators is empty %}
+<h2>Short Stories</h2>
+<table class="table">
+<tr>
+    <th>Story</th>
+    <th>Credit</th>
+</tr>
+{% for short_story_creator in entity.short_story_creators %}
+<tr>
+    <th><a href="/short-story/{{ short_story_creator.short_story.short_story_id }}/">
+        "{{ short_story_creator.short_story.title }}"</a>
+        {% if short_story_creator.short_story.game_line.game_line not in short_story_creator.short_story.title %}({{ short_story_creator.short_story.game_line.game_line }}){% endif %}
+        {% if not short_story_creator.short_story.magazine is empty %}
+            in <a href="/magazine/{{ short_story_creator.short_story.magazine.magazine_id }}/">
+            {{ short_story_creator.short_story.magazine.title.magtitle }} #{{ short_story_creator.short_story.magazine.issue_number}}
+            </a>
+        {% endif %}
+        {% if not short_story_creator.short_story.fictional_book is empty %}
+            in <a href="/fiction-book/{{ short_story_creator.short_story.fictional_book.fictional_book_id }}/">
+            {{ short_story_creator.short_story.fictional_book.title }}
+            </a>
+        {% endif %}
+        {% if not short_story_creator.short_story.rpg_book is empty %}
+            in <a href="/rpg-book/{{ short_story_creator.short_story.rpg_book.rpg_book_id }}/">
+            {{ short_story_creator.short_story.rpg_book.title }}
+            </a>
+        {% endif %}
+    </th>
+    <th>{{ short_story_creator.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

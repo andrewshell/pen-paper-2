@@ -2,7 +2,7 @@
 namespace PenPaper\Persistence\DataSource\GameType;
 
 use Atlas\Orm\Mapper\AbstractMapper;
-
+use PenPaper\Persistence\DataSource\OtherGame\OtherGameMapper;
 /**
  * @inheritdoc
  */
@@ -13,6 +13,6 @@ class GameTypeMapper extends AbstractMapper
      */
     protected function setRelated()
     {
-        // no related fields
+        $this->oneToMany('other_games', OtherGameMapper::class);
     }
 }

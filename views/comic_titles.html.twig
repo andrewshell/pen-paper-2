@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/comic-titles/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if comic_titles | length > 0 %}
+    <ul>
+    {% for comic_title in comic_titles %}
+        <li><a href="/comic-title/{{ comic_title.comic_title_id }}/">
+            {{ comic_title.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Comic Titles Found</p>
+{% endif %}
+{% endblock content %}

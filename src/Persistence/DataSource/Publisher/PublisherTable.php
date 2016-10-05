@@ -16,7 +16,7 @@ class PublisherTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_publishers';
+        return 'publishers';
     }
 
     /**
@@ -25,11 +25,11 @@ class PublisherTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'publisherid',
+            'publisher_id',
             'publisher',
             'url',
-            'publishernotes',
-            'publisherimage',
+            'notes',
+            'image',
         ];
     }
 
@@ -39,13 +39,13 @@ class PublisherTable extends AbstractTable
     public function getCols()
     {
         return [
-            'publisherid' => (object) [
-                'name' => 'publisherid',
+            'publisher_id' => (object) [
+                'name' => 'publisher_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
@@ -69,8 +69,8 @@ class PublisherTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'publishernotes' => (object) [
-                'name' => 'publishernotes',
+            'notes' => (object) [
+                'name' => 'notes',
                 'type' => 'text',
                 'size' => null,
                 'scale' => null,
@@ -79,8 +79,8 @@ class PublisherTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'publisherimage' => (object) [
-                'name' => 'publisherimage',
+            'image' => (object) [
+                'name' => 'image',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -98,7 +98,7 @@ class PublisherTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'publisherid',
+            'publisher_id',
         ];
     }
 
@@ -116,11 +116,11 @@ class PublisherTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'publisherid' => '0',
+            'publisher_id' => null,
             'publisher' => '',
             'url' => '',
-            'publishernotes' => null,
-            'publisherimage' => '',
+            'notes' => null,
+            'image' => '',
         ];
     }
 }

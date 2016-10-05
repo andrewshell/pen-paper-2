@@ -1,0 +1,21 @@
+{% if not entity.rpg_book_creators is empty %}
+<h2>Books</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+    <th>Publisher</th>
+    <th>Credit</th>
+</tr>
+{% for rpg_book_creator in entity.rpg_book_creators %}
+<tr>
+    <th><a href="/rpg-book/{{ rpg_book_creator.rpg_book.rpg_book_id }}/">
+        {{ rpg_book_creator.rpg_book.title }}
+        {% if rpg_book_creator.rpg_book.game_line.game_line not in rpg_book_creator.rpg_book.title %}({{ rpg_book_creator.rpg_book.game_line.game_line }}){% endif %}
+        {% if rpg_book_creator.rpg_book.copyright is not empty %}({{ rpg_book_creator.rpg_book.copyright }}){% endif %}
+    </a></th>
+    <th><a href="/publisher/{{ rpg_book_creator.rpg_book.publisher.publisher_id }}/">{{ rpg_book_creator.rpg_book.publisher.publisher }}</a></th>
+    <th>{{ rpg_book_creator.credit.credit }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

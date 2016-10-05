@@ -16,7 +16,7 @@ class CreditTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_credits';
+        return 'credits';
     }
 
     /**
@@ -25,7 +25,7 @@ class CreditTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'creditid',
+            'credit_id',
             'credit',
         ];
     }
@@ -36,13 +36,13 @@ class CreditTable extends AbstractTable
     public function getCols()
     {
         return [
-            'creditid' => (object) [
-                'name' => 'creditid',
+            'credit_id' => (object) [
+                'name' => 'credit_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
@@ -65,7 +65,7 @@ class CreditTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'creditid',
+            'credit_id',
         ];
     }
 
@@ -83,7 +83,7 @@ class CreditTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'creditid' => '0',
+            'credit_id' => null,
             'credit' => '',
         ];
     }

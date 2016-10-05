@@ -18,10 +18,10 @@ class CreatorsAtlasRepository implements CreatorsRepository
     {
         $creators = $this->atlas
             ->select(CreatorMapper::class)
-            ->where('lastname LIKE ?', $prefix . '%')
+            ->where('last_name LIKE ?', $prefix . '%')
             ->orderBy([
-                'lastname ASC',
-                'firstname ASC',
+                'last_name ASC',
+                'first_name ASC',
             ])
             ->fetchRecordSet();
 
@@ -34,45 +34,46 @@ class CreatorsAtlasRepository implements CreatorsRepository
             CreatorMapper::class,
             $id,
             [
-                'books' => function ($books) {
+                'urls',
+                'rpg_book_creators' => function ($books) {
                     $books->with([
-                        'book' => function ($book) {
+                        'rpg_book' => function ($book) {
                             $book->with([
                                 'publisher',
-                                'gameline',
+                                'game_line',
                             ]);
                         },
                         'credit',
                     ]);
                 },
-                'othergames' => function ($othergames) {
+                'other_game_creators' => function ($othergames) {
                     $othergames->with([
-                        'othergame' => function ($othergame) {
+                        'other_game' => function ($othergame) {
                             $othergame->with([
                                 'publisher',
-                                'gameline',
+                                'game_line',
                             ]);
                         },
                         'credit',
                     ]);
                 },
-                'magazines' => function ($magazines) {
+                'magazine_issue_creators' => function ($magazines) {
                     $magazines->with([
-                        'magazine' => function ($magazine) {
+                        'magazine_issue' => function ($magazine) {
                             $magazine->with([
-                                'title'
+                                'magazine_title'
                             ]);
                         },
                         'credit',
                     ]);
                 },
-                'articles' => function ($articles) {
+                'magazine_article_creators' => function ($articles) {
                     $articles->with([
-                        'article' => function ($article) {
+                        'magazine_article' => function ($article) {
                             $article->with([
-                                'magazine' => function ($magazine) {
+                                'magazine_issue' => function ($magazine) {
                                     $magazine->with([
-                                        'title',
+                                        'magazine_title',
                                     ]);
                                 },
                             ]);
@@ -80,39 +81,39 @@ class CreatorsAtlasRepository implements CreatorsRepository
                         'credit',
                     ]);
                 },
-                'fictions' => function ($fictions) {
+                'fiction_book_creators' => function ($fictions) {
                     $fictions->with([
-                        'fiction' => function ($fiction) {
+                        'fiction_book' => function ($fiction) {
                             $fiction->with([
                                 'publisher',
-                                'gameline',
+                                'game_line',
                             ]);
                         },
                         'credit',
                     ]);
                 },
-                'shortfictions' => function ($shortfictions) {
+                'short_story_creators' => function ($shortfictions) {
                     $shortfictions->with([
-                        'shortfiction' => function ($shortfiction) {
+                        'short_story' => function ($shortfiction) {
                             $shortfiction->with([
-                                'gameline',
-                                'fiction',
-                                'magazine' => function ($magazine) {
+                                'game_line',
+                                'fiction_book',
+                                'magazine_issue' => function ($magazine) {
                                     $magazine->with([
-                                        'title',
+                                        'magazine_title',
                                     ]);
                                 },
-                                'book',
+                                'rpg_book',
                             ]);
                         },
                         'credit',
                     ]);
                 },
-                'comics' => function ($comics) {
+                'comic_issue_creators' => function ($comics) {
                     $comics->with([
-                        'comic' => function ($comic) {
+                        'comic_issue' => function ($comic) {
                             $comic->with([
-                                'title' => function ($title) {
+                                'comic_title' => function ($title) {
                                     $title->with([
                                         'publisher',
                                     ]);
@@ -125,76 +126,61 @@ class CreatorsAtlasRepository implements CreatorsRepository
             ]
         )->getArrayCopy();
 
-        // copyright desc, booktitle
-        usort($creator['books'], function ($a, $b) {
-            if ($b['book']['copyright'] === $a['book']['copyright']) {
-                if ($a['book']['booktitle'] === $b['book']['booktitle']) {
-                    return 0;
-                }
-                return strcmp($a['book']['booktitle'], $b['book']['booktitle']);
-            }
-            return strcmp($b['book']['copyright'], $a['book']['copyright']);
-        });
+        $sorter = new Sorter();
 
-        // copyright desc, gametitle
-        usort($creator['othergames'], function ($a, $b) {
-            if ($b['othergame']['copyright'] === $a['othergame']['copyright']) {
-                if ($a['othergame']['gametitle'] === $b['othergame']['gametitle']) {
-                    return 0;
-                }
-                return strcmp($a['othergame']['gametitle'], $b['othergame']['gametitle']);
-            }
-            return strcmp($b['othergame']['copyright'], $a['othergame']['copyright']);
-        });
+        $sorter->sort(
+            $creator['rpg_book_creators'],
+            [
+                'int rpg_book.copyright desc',
+                'string rpg_book.title asc',
+            ]
+        );
 
-        // magtitle, issuenumber desc
-        usort($creator['magazines'], function ($a, $b) {
-            if ($a['magazine']['title']['magtitle'] === $b['magazine']['title']['magtitle']) {
-                if ($b['magazine']['issuenumber'] === $a['magazine']['issuenumber']) {
-                    return 0;
-                }
-                return (intval($b['magazine']['issuenumber']) < intval($a['magazine']['issuenumber'])) ? -1 : 1;
-            }
-            return strcmp($a['magazine']['title']['magtitle'], $b['magazine']['title']['magtitle']);
-        });
+        $sorter->sort(
+            $creator['other_game_creators'],
+            [
+                'int other_game.copyright desc',
+                'string other_game.title asc',
+            ]
+        );
 
-        // arttitle
-        usort($creator['articles'], function ($a, $b) {
-            if ($a['article']['arttitle'] === $b['article']['arttitle']) {
-                return 0;
-            }
-            return strcmp($a['article']['arttitle'], $b['article']['arttitle']);
-        });
+        $sorter->sort(
+            $creator['magazine_issue_creators'],
+            [
+                'string magazine_issue.magazine_title.title asc',
+                'int magazine_issue.issue_number desc',
+            ]
+        );
 
-        // copyright desc, fictiontitle
-        usort($creator['fictions'], function ($a, $b) {
-            if ($b['fiction']['copyright'] === $a['fiction']['copyright']) {
-                if ($a['fiction']['fictiontitle'] === $b['fiction']['fictiontitle']) {
-                    return 0;
-                }
-                return strcmp($a['fiction']['fictiontitle'], $b['fiction']['fictiontitle']);
-            }
-            return strcmp($b['fiction']['copyright'], $a['fiction']['copyright']);
-        });
+        $sorter->sort(
+            $creator['magazine_article_creators'],
+            [
+                'string magazine_article.title asc',
+            ]
+        );
 
-        // shortfictiontitle
-        usort($creator['shortfictions'], function ($a, $b) {
-            if ($a['shortfiction']['shortfictiontitle'] === $b['shortfiction']['shortfictiontitle']) {
-                return 0;
-            }
-            return strcmp($a['shortfiction']['shortfictiontitle'], $b['shortfiction']['shortfictiontitle']);
-        });
+        $sorter->sort(
+            $creator['fiction_book_creators'],
+            [
+                'int fiction_book.copyright desc',
+                'string fiction_book.title asc',
+            ]
+        );
 
-        // comictitle, issuenumber desc
-        usort($creator['comics'], function ($a, $b) {
-            if ($a['comic']['title']['comictitle'] === $b['comic']['title']['comictitle']) {
-                if ($b['comic']['issuenumber'] === $a['comic']['issuenumber']) {
-                    return 0;
-                }
-                return (intval($b['comic']['issuenumber']) < intval($a['comic']['issuenumber'])) ? -1 : 1;
-            }
-            return strcmp($a['comic']['title']['comictitle'], $b['comic']['title']['comictitle']);
-        });
+        $sorter->sort(
+            $creator['short_story_creators'],
+            [
+                'string short_story.title asc',
+            ]
+        );
+
+        $sorter->sort(
+            $creator['comic_issue_creators'],
+            [
+                'string comic_issue.comic_title.title asc',
+                'int comic_issue.issue_number desc',
+            ]
+        );
 
         return $creator;
     }

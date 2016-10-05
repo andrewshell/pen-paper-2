@@ -16,7 +16,7 @@ class PublisherLineTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_publisherlines';
+        return 'publisher_lines';
     }
 
     /**
@@ -25,9 +25,9 @@ class PublisherLineTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'publisherlineid',
-            'publisherid',
-            'gamelineid',
+            'publisher_line_id',
+            'publisher_id',
+            'game_line_id',
         ];
     }
 
@@ -37,33 +37,33 @@ class PublisherLineTable extends AbstractTable
     public function getCols()
     {
         return [
-            'publisherlineid' => (object) [
-                'name' => 'publisherlineid',
+            'publisher_line_id' => (object) [
+                'name' => 'publisher_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
+                'default' => null,
+                'autoinc' => true,
                 'primary' => true,
             ],
-            'publisherid' => (object) [
-                'name' => 'publisherid',
+            'publisher_id' => (object) [
+                'name' => 'publisher_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gamelineid' => (object) [
-                'name' => 'gamelineid',
+            'game_line_id' => (object) [
+                'name' => 'game_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -76,7 +76,7 @@ class PublisherLineTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'publisherlineid',
+            'publisher_line_id',
         ];
     }
 
@@ -85,7 +85,7 @@ class PublisherLineTable extends AbstractTable
      */
     public function getAutoinc()
     {
-        return '';
+        return 'publisher_line_id';
     }
 
     /**
@@ -94,9 +94,9 @@ class PublisherLineTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'publisherlineid' => '0',
-            'publisherid' => '0',
-            'gamelineid' => '0',
+            'publisher_line_id' => null,
+            'publisher_id' => null,
+            'game_line_id' => null,
         ];
     }
 }

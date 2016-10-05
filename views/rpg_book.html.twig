@@ -1,0 +1,61 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1>{{ rpg_book.title }}{% if not rpg_book.copyright is empty %} ({{ rpg_book.copyright }}){% endif %}</h1>
+<dl class="dl-horizontal">
+    {% if not rpg_book.image is empty %}
+    <dt>Image</dt><dd><img src="/images/rpgdb/{{ rpg_book.image }}"></dd>
+    {% endif %}
+
+    {% if not rpg_book.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ rpg_book.publisher.publisher_id }}/">{{ rpg_book.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not rpg_book.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ rpg_book.game_line.game_line_id }}/">{{ rpg_book.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {% if not rpg_book.game_system is empty %}
+    <dt>Game System</dt><dd><a href="/game-system/{{ rpg_book.game_system.game_system_id }}/">{{ rpg_book.game_system.game_system }}</a></dd>
+    {% endif %}
+
+    {% if not rpg_book.product_code is empty %}
+    <dt>Product Code</dt><dd>{{ rpg_book.product_code }}</dd>
+    {% endif %}
+
+    {% if not rpg_book.isbn is empty %}
+    <dt>ISBN</dt><dd>{{ rpg_book.isbn }}</dd>
+    {% endif %}
+
+    {% if not rpg_book.isbn13 is empty %}
+    <dt>ISBN-13</dt><dd>{{ rpg_book.isbn13 }}</dd>
+    {% endif %}
+
+    {% if rpg_book.cover_price > 0 %}
+        {% if rpg_book.pdf_price > 0 %}
+            <dt>Cover Price</dt><dd>${{ rpg_book.cover_price }} (print), ${{ rpg_book.pdf_price }} (pdf)</dd>
+        {% else %}
+            <dt>Cover Price</dt><dd>${{ rpg_book.cover_price }}</dd>
+        {% endif %}
+    {% else %}
+        {% if rpg_book.pdf_price > 0 %}
+            <dt>Cover Price</dt><dd>${{ rpg_book.pdf_price }} (pdf)</dd>
+        {% endif %}
+    {% endif %}
+
+    {% if not rpg_book.page_count is empty %}
+    <dt># of Pages</dt><dd>{{ rpg_book.page_count }}</dd>
+    {% endif %}
+
+    {% if not rpg_book.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ rpg_book.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not rpg_book.notes is empty %}
+    <dt>Notes</dt><dd>{{ rpg_book.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/creators.html.twig', {entity: rpg_book}) }}
+    {{ include('inc/short_stories.html.twig', {entity: rpg_book}) }}
+</dl>
+{% endblock content %}

@@ -11,7 +11,8 @@
         "twig/twig": "^1.25"
     },
     "require-dev": {
-        "atlas/cli": "0.3.*@alpha"
+        "atlas/cli": "0.3.*@alpha",
+        "symfony/yaml": "^3.0"
     },
     "autoload": {
         "psr-4": {

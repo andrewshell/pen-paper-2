@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/short-stories/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if short_stories | length > 0 %}
+    <ul>
+    {% for short_story in short_stories %}
+        <li><a href="/short-story/{{ short_story.short_story_id }}/">
+            {{ short_story.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Short Stories Found</p>
+{% endif %}
+{% endblock content %}

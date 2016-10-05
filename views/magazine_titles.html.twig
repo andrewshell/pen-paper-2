@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/magazine-titles/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if magazine_titles | length > 0 %}
+    <ul>
+    {% for magazine_title in magazine_titles %}
+        <li><a href="/magazine-title/{{ magazine_title.magazine_title_id }}/">
+            {{ magazine_title.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Magazine Titles Found</p>
+{% endif %}
+{% endblock content %}

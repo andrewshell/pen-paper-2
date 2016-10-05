@@ -16,7 +16,7 @@ class MagazineArticleTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_magazine_articles';
+        return 'magazine_articles';
     }
 
     /**
@@ -25,12 +25,12 @@ class MagazineArticleTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'articleid',
-            'arttitle',
-            'gamelineid',
-            'magazineid',
+            'magazine_article_id',
+            'title',
+            'game_line_id',
+            'magazine_issue_id',
             'page',
-            'articlenotes',
+            'notes',
         ];
     }
 
@@ -40,18 +40,18 @@ class MagazineArticleTable extends AbstractTable
     public function getCols()
     {
         return [
-            'articleid' => (object) [
-                'name' => 'articleid',
+            'magazine_article_id' => (object) [
+                'name' => 'magazine_article_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
-            'arttitle' => (object) [
-                'name' => 'arttitle',
+            'title' => (object) [
+                'name' => 'title',
                 'type' => 'varchar',
                 'size' => 200,
                 'scale' => null,
@@ -60,23 +60,23 @@ class MagazineArticleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gamelineid' => (object) [
-                'name' => 'gamelineid',
+            'game_line_id' => (object) [
+                'name' => 'game_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'magazineid' => (object) [
-                'name' => 'magazineid',
+            'magazine_issue_id' => (object) [
+                'name' => 'magazine_issue_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -90,8 +90,8 @@ class MagazineArticleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'articlenotes' => (object) [
-                'name' => 'articlenotes',
+            'notes' => (object) [
+                'name' => 'notes',
                 'type' => 'text',
                 'size' => null,
                 'scale' => null,
@@ -109,7 +109,7 @@ class MagazineArticleTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'articleid',
+            'magazine_article_id',
         ];
     }
 
@@ -127,12 +127,12 @@ class MagazineArticleTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'articleid' => '0',
-            'arttitle' => '',
-            'gamelineid' => '0',
-            'magazineid' => '0',
+            'magazine_article_id' => null,
+            'title' => '',
+            'game_line_id' => null,
+            'magazine_issue_id' => null,
             'page' => '0',
-            'articlenotes' => null,
+            'notes' => null,
         ];
     }
 }

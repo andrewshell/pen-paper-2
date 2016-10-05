@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/rpg-books/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if rpg_books | length > 0 %}
+    <ul>
+    {% for rpg_book in rpg_books %}
+        <li><a href="/rpg-book/{{ rpg_book.rpg_book_id }}/">
+            {{ rpg_book.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No RPG Books Found</p>
+{% endif %}
+{% endblock content %}

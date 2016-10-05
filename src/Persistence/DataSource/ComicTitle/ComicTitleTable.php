@@ -16,7 +16,7 @@ class ComicTitleTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_comic_titles';
+        return 'comic_titles';
     }
 
     /**
@@ -25,10 +25,10 @@ class ComicTitleTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'comictitleid',
-            'comictitle',
-            'publisherid',
-            'gamelineid',
+            'comic_title_id',
+            'title',
+            'publisher_id',
+            'game_line_id',
         ];
     }
 
@@ -38,18 +38,18 @@ class ComicTitleTable extends AbstractTable
     public function getCols()
     {
         return [
-            'comictitleid' => (object) [
-                'name' => 'comictitleid',
+            'comic_title_id' => (object) [
+                'name' => 'comic_title_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
-            'comictitle' => (object) [
-                'name' => 'comictitle',
+            'title' => (object) [
+                'name' => 'title',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -58,23 +58,23 @@ class ComicTitleTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'publisherid' => (object) [
-                'name' => 'publisherid',
+            'publisher_id' => (object) [
+                'name' => 'publisher_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gamelineid' => (object) [
-                'name' => 'gamelineid',
+            'game_line_id' => (object) [
+                'name' => 'game_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -87,7 +87,7 @@ class ComicTitleTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'comictitleid',
+            'comic_title_id',
         ];
     }
 
@@ -105,10 +105,10 @@ class ComicTitleTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'comictitleid' => '0',
-            'comictitle' => '',
-            'publisherid' => '0',
-            'gamelineid' => '0',
+            'comic_title_id' => null,
+            'title' => '',
+            'publisher_id' => null,
+            'game_line_id' => null,
         ];
     }
 }

@@ -1,0 +1,17 @@
+{% if not entity.short_stories is empty %}
+<h2>Short Stories</h2>
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Page</th>
+</tr>
+{% for short_story in entity.short_stories %}
+<tr>
+    <th><a href="/short-story/{{ short_story.short_story_id }}/">
+        "{{ short_story.title }}"</a>
+    </th>
+    <th>{{ short_story.page }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

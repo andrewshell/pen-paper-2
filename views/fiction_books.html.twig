@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<ul class="list-inline">
+{% for letter in 'A' .. 'Z' %}
+    <li><a href="/fiction-books/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+
+{% if fiction_books | length > 0 %}
+    <ul>
+    {% for fiction_book in fiction_books %}
+        <li><a href="/fiction-book/{{ fiction_book.fiction_book_id }}/">
+            {{ fiction_book.title }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Fiction Books Found</p>
+{% endif %}
+{% endblock content %}

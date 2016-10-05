@@ -16,7 +16,7 @@ class OtherGameTable extends AbstractTable
      */
     public function getName()
     {
-        return 'rpg_other_games';
+        return 'other_games';
     }
 
     /**
@@ -25,27 +25,23 @@ class OtherGameTable extends AbstractTable
     public function getColNames()
     {
         return [
-            'othergameid',
-            'gametitle',
-            'gamelineid',
-            'gametypeid',
-            'publisherid',
-            'productcode',
+            'other_game_id',
+            'title',
+            'game_line_id',
+            'game_type_id',
+            'publisher_id',
+            'product_code',
             'isbn',
-            'pagecount',
+            'page_count',
             'copyright',
-            'gameurl',
+            'url',
             'image',
-            'gamenotes',
-            'rpgshopid',
-            'submitter',
-            'imagesubmitter',
+            'notes',
+            'rpg_shop_id',
             'keywords',
-            'monthid',
+            'release_month_id',
             'price',
-            'shipdate',
-            'incomplete',
-            'gameupdated',
+            'ship_date',
         ];
     }
 
@@ -55,18 +51,18 @@ class OtherGameTable extends AbstractTable
     public function getCols()
     {
         return [
-            'othergameid' => (object) [
-                'name' => 'othergameid',
+            'other_game_id' => (object) [
+                'name' => 'other_game_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => true,
             ],
-            'gametitle' => (object) [
-                'name' => 'gametitle',
+            'title' => (object) [
+                'name' => 'title',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -75,38 +71,38 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gamelineid' => (object) [
-                'name' => 'gamelineid',
+            'game_line_id' => (object) [
+                'name' => 'game_line_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gametypeid' => (object) [
-                'name' => 'gametypeid',
+            'game_type_id' => (object) [
+                'name' => 'game_type_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'publisherid' => (object) [
-                'name' => 'publisherid',
+            'publisher_id' => (object) [
+                'name' => 'publisher_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'productcode' => (object) [
-                'name' => 'productcode',
+            'product_code' => (object) [
+                'name' => 'product_code',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -125,8 +121,8 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'pagecount' => (object) [
-                'name' => 'pagecount',
+            'page_count' => (object) [
+                'name' => 'page_count',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -145,8 +141,8 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gameurl' => (object) [
-                'name' => 'gameurl',
+            'url' => (object) [
+                'name' => 'url',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
@@ -165,8 +161,8 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'gamenotes' => (object) [
-                'name' => 'gamenotes',
+            'notes' => (object) [
+                'name' => 'notes',
                 'type' => 'text',
                 'size' => null,
                 'scale' => null,
@@ -175,33 +171,13 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'rpgshopid' => (object) [
-                'name' => 'rpgshopid',
+            'rpg_shop_id' => (object) [
+                'name' => 'rpg_shop_id',
                 'type' => 'varchar',
                 'size' => 255,
                 'scale' => null,
                 'notnull' => true,
                 'default' => '',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'submitter' => (object) [
-                'name' => 'submitter',
-                'type' => 'int',
-                'size' => 11,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'imagesubmitter' => (object) [
-                'name' => 'imagesubmitter',
-                'type' => 'int',
-                'size' => 11,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0',
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -215,13 +191,13 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'monthid' => (object) [
-                'name' => 'monthid',
+            'release_month_id' => (object) [
+                'name' => 'release_month_id',
                 'type' => 'int',
                 'size' => 11,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0',
+                'default' => null,
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -235,33 +211,13 @@ class OtherGameTable extends AbstractTable
                 'autoinc' => false,
                 'primary' => false,
             ],
-            'shipdate' => (object) [
-                'name' => 'shipdate',
+            'ship_date' => (object) [
+                'name' => 'ship_date',
                 'type' => 'date',
                 'size' => null,
                 'scale' => null,
                 'notnull' => true,
-                'default' => '0000-00-00',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'incomplete' => (object) [
-                'name' => 'incomplete',
-                'type' => 'tinyint',
-                'size' => 2,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0',
-                'autoinc' => false,
-                'primary' => false,
-            ],
-            'gameupdated' => (object) [
-                'name' => 'gameupdated',
-                'type' => 'date',
-                'size' => null,
-                'scale' => null,
-                'notnull' => true,
-                'default' => '0000-00-00',
+                'default' => '2002-01-01',
                 'autoinc' => false,
                 'primary' => false,
             ],
@@ -274,7 +230,7 @@ class OtherGameTable extends AbstractTable
     public function getPrimaryKey()
     {
         return [
-            'othergameid',
+            'other_game_id',
         ];
     }
 
@@ -292,27 +248,23 @@ class OtherGameTable extends AbstractTable
     public function getColDefaults()
     {
         return [
-            'othergameid' => '0',
-            'gametitle' => '',
-            'gamelineid' => '0',
-            'gametypeid' => '0',
-            'publisherid' => '0',
-            'productcode' => '',
+            'other_game_id' => null,
+            'title' => '',
+            'game_line_id' => null,
+            'game_type_id' => null,
+            'publisher_id' => null,
+            'product_code' => '',
             'isbn' => '',
-            'pagecount' => '',
+            'page_count' => '',
             'copyright' => '0',
-            'gameurl' => '',
+            'url' => '',
             'image' => '',
-            'gamenotes' => null,
-            'rpgshopid' => '',
-            'submitter' => '0',
-            'imagesubmitter' => '0',
+            'notes' => null,
+            'rpg_shop_id' => '',
             'keywords' => '',
-            'monthid' => '0',
+            'release_month_id' => null,
             'price' => '',
-            'shipdate' => '0000-00-00',
-            'incomplete' => '0',
-            'gameupdated' => '0000-00-00',
+            'ship_date' => '2002-01-01',
         ];
     }
 }

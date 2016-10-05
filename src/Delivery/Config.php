@@ -35,21 +35,38 @@ class Config extends ContainerConfig
             'exceptionResponse' => $di->lazyNew(Response::class),
         ];
 
-        /** Domain Use Cases */
+        /** Domain Use Cases and Atlas Repositories */
 
-        $di->params[Domain\Creators::class] = [
-            'repo' => $di->lazyNew(Persistence\CreatorsAtlasRepository::class),
+        $domains = [
+            ['Creators', 'Creator'],
+            ['RpgBooks', 'RpgBook'],
+            ['OtherGames', 'OtherGame'],
+            ['MagazineArticles', 'MagazineArticle'],
+            ['MagazineIssues', 'MagazineIssue'],
+            ['MagazineTitles', 'MagazineTitle'],
+            ['FictionBooks', 'FictionBook'],
+            ['ComicIssues', 'ComicIssue'],
+            ['ComicTitles', 'ComicTitle'],
+            ['ShortStories', 'ShortStory'],
+            ['Publishers', 'Publisher'],
+            ['GameLines', 'GameLine'],
         ];
 
-        $di->params[Domain\Creator::class] = [
-            'repo' => $di->lazyNew(Persistence\CreatorsAtlasRepository::class),
-        ];
+        foreach ($domains as $domain) {
+            list($plural, $single) = $domain;
 
-        /** Repositories */
+            $di->params["PenPaper\\Persistence\\{$plural}AtlasRepository"] = [
+                'atlas' => $di->lazyGet('atlas'),
+            ];
 
-        $di->params[Persistence\CreatorsAtlasRepository::class] = [
-            'atlas' => $di->lazyGet('atlas'),
-        ];
+            $di->params["PenPaper\\Domain\\{$plural}"] = [
+                'repo' => $di->lazyNew("PenPaper\\Persistence\\{$plural}AtlasRepository"),
+            ];
+
+            $di->params["PenPaper\\Domain\\{$single}"] = [
+                'repo' => $di->lazyNew("PenPaper\\Persistence\\{$plural}AtlasRepository"),
+            ];
+        }
 
         /** Twig */
 
@@ -85,10 +102,41 @@ class Config extends ContainerConfig
         $adr->get('Home', '/', Domain\Home::class)
             ->defaults(['_view' => 'home.html.twig']);
 
-        $adr->get('Creators', '/creators/{prefix}?/?', Domain\Creators::class)
-            ->defaults(['prefix' => 'A', '_view' => 'creators.html.twig']);
+        $domains = [
+            ['creators', 'creator'],
+            ['rpg_books', 'rpg_book'],
+            ['other_games', 'other_game'],
+            [false, 'magazine_article'],
+            [false, 'magazine_issue'],
+            ['magazine_titles', 'magazine_title'],
+            ['fiction_books', 'fiction_book'],
+            [false, 'comic_issue'],
+            ['comic_titles', 'comic_title'],
+            ['short_stories', 'short_story'],
+            ['publishers', 'publisher'],
+            ['game_lines', 'game_line'],
+        ];
 
-        $adr->get('Creator', '/creator/{id}/', Domain\Creator::class)
-            ->defaults(['_view' => 'creator.html.twig']);
+        foreach ($domains as $domain) {
+            list($pluralSnake, $singleSnake) = $domain;
+
+            if (false !== $pluralSnake) {
+                $pluralKebob = str_replace('_', '-', $pluralSnake);
+                $pluralCamel = str_replace(' ', '', ucwords(str_replace('_', ' ', $pluralSnake)));
+                $pluralDomain = "PenPaper\\Domain\\{$pluralCamel}";
+
+                $adr->get($pluralCamel, "/{$pluralKebob}/{prefix}?/?", $pluralDomain)
+                    ->defaults(['prefix' => 'A', '_view' => "{$pluralSnake}.html.twig"]);
+            }
+
+            if (false !== $singleSnake) {
+                $singleKebob = str_replace('_', '-', $singleSnake);
+                $singleCamel = str_replace(' ', '', ucwords(str_replace('_', ' ', $singleSnake)));
+                $singleDomain = "PenPaper\\Domain\\{$singleCamel}";
+
+                $adr->get($singleCamel, "/{$singleKebob}/{id}/", $singleDomain)
+                    ->defaults(['_view' => "{$singleSnake}.html.twig"]);
+            }
+        }
     }
 }
