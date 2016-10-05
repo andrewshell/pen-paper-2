@@ -1,20 +1,44 @@
 {% if not entity.other_game_creators is empty %}
-<h2>Other Games</h2>
+{% if entity.other_game_creators[0].creator is not empty %}
+    <h2>Creators</h2>
+{% else %}
+    <h2>Other Games</h2>
+{% endif %}
 <table class="table">
 <tr>
+    {% if entity.other_game_creators[0].creator is not empty %}
+    <th>User</th>
+    {% endif %}
+    {% if entity.other_game_creators[0].other_game is not empty %}
     <th>Product</th>
+    {% if entity.other_game_creators[0].other_game.publisher is not empty %}
     <th>Publisher</th>
+    {% endif %}
+    {% endif %}
+    {% if entity.other_game_creators[0].credit is not empty %}
     <th>Credit</th>
+    {% endif %}
 </tr>
 {% for other_game_creator in entity.other_game_creators %}
 <tr>
+    {% if other_game_creator.creator is not empty %}
+    <th><a href="/creator/{{ other_game_creator.creator.creator_id }}/">
+        {{ other_game_creator.creator.last_name }}{{ other_game_creator.creator.first_name ? ', ' : '' }}{{ other_game_creator.creator.first_name }}
+    </a></th>
+    {% endif %}
+    {% if other_game_creator.other_game is not empty %}
     <th><a href="/other-game/{{ other_game_creator.other_game.other_game_id }}/">
         {{ other_game_creator.other_game.title }}
         {% if other_game_creator.other_game.game_line.game_line not in other_game_creator.other_game.title %}({{ other_game_creator.other_game.game_line.game_line }}){% endif %}
         {% if other_game_creator.other_game.copyright is not empty %}({{ other_game_creator.other_game.copyright }}){% endif %}
     </a></th>
+    {% if other_game_creator.other_game.publisher is not empty %}
     <th><a href="/publisher/{{ other_game_creator.other_game.publisher.publisher_id }}/">{{ other_game_creator.other_game.publisher.publisher }}</a></th>
+    {% endif %}
+    {% endif %}
+    {% if other_game_creator.credit is not empty %}
     <th>{{ other_game_creator.credit.credit }}</th>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

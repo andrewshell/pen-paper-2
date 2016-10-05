@@ -1,8 +1,44 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h1>{{ other_game.title }}</h1>
+<h1>{{ other_game.title }}{% if not other_game.copyright is empty %} ({{ other_game.copyright }}){% endif %}</h1>
 <dl class="dl-horizontal">
-    {{ dump(other_game) }}
+    {% if not other_game.image is empty %}
+    <dt>Image</dt><dd><img src="/images/gamedb/{{ other_game.image }}"></dd>
+    {% endif %}
+
+    {% if not other_game.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ other_game.publisher.publisher_id }}/">{{ other_game.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not other_game.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ other_game.game_line.game_line_id }}/">{{ other_game.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {% if not other_game.game_type is empty %}
+    <dt>Game Type</dt><dd><a href="/game-type/{{ other_game.game_type.game_type_id }}/">{{ other_game.game_type.game_type }}</a></dd>
+    {% endif %}
+
+    {% if not other_game.product_code is empty %}
+    <dt>Product Code</dt><dd>{{ other_game.product_code }}</dd>
+    {% endif %}
+
+    {% if not other_game.isbn is empty %}
+    <dt>ISBN</dt><dd>{{ other_game.isbn }}</dd>
+    {% endif %}
+
+    {% if not other_game.page_count is empty %}
+    <dt># of Pages</dt><dd>{{ other_game.page_count }}</dd>
+    {% endif %}
+
+    {% if not other_game.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ other_game.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not other_game.notes is empty %}
+    <dt>Notes</dt><dd>{{ other_game.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/other_game_creators.html.twig', {entity: other_game}) }}
 </dl>
 {% endblock content %}

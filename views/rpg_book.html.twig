@@ -55,7 +55,7 @@
     <dt>Notes</dt><dd>{{ rpg_book.notes | raw }}</dd>
     {% endif %}
 
-    {{ include('inc/creators.html.twig', {entity: rpg_book}) }}
+    {{ include('inc/rpg_book_creators.html.twig', {entity: rpg_book}) }}
     {{ include('inc/short_stories.html.twig', {entity: rpg_book}) }}
 </dl>
 {% endblock content %}

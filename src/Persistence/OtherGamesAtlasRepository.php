@@ -33,11 +33,28 @@ class OtherGamesAtlasRepository implements OtherGamesRepository
             OtherGameMapper::class,
             $id,
             [
-
+                'publisher',
+                'game_line',
+                'game_type',
+                'release_month',
+                'other_game_creators' => function ($creator) {
+                    $creator->with([
+                        'creator',
+                        'credit',
+                    ]);
+                },
             ]
         )->getArrayCopy();
 
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['other_game_creators'],
+            [
+                'string creator.last_name asc',
+                'string creator.first_name asc',
+            ]
+        );
 
         return $entity;
     }
