@@ -1,0 +1,15 @@
+{% if not entity.comic_issues is empty %}
+<h2>Comic Issues</h2>
+<table class="table">
+<tr>
+    <th>Book</th>
+</tr>
+{% for comic_issue in entity.comic_issues %}
+<tr>
+    <th><a href="/comic-issue/{{ comic_issue.comic_issue_id }}/">
+        {{ comic_issue.comic_title.title }} #{{ comic_issue.issue_number}}
+    </a> {% if comic_issue.cover_date is not empty %}({{ comic_issue.cover_date }}){% endif %}</th>
+</tr>
+{% endfor %}
+</table>
+{% endif %}

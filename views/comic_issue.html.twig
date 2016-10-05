@@ -1,8 +1,28 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h1>{{ comic_issue.title }}</h1>
+<h1>{{ comic_issue.comic_title.title }} #{{ comic_issue.issue_number}}{% if comic_issue.cover_date is not empty %} ({{ comic_issue.cover_date }}){% endif %}</h1>
 <dl class="dl-horizontal">
-    {{ dump(comic_issue) }}
+    {% if not comic_issue.cover is empty %}
+    <dt>Cover</dt><dd><img src="/images/rpgcomics/{{ comic_issue.cover }}"></dd>
+    {% endif %}
+
+    {% if not comic_issue.comic_title is empty %}
+    <dt>Comic Title</dt><dd><a href="/comic-title/{{ comic_issue.comic_title.comic_title_id }}/">{{ comic_issue.comic_title.title }}</a></dd>
+    {% endif %}
+
+    {% if not comic_issue.comic_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ comic_issue.comic_title.publisher.publisher_id }}/">{{ comic_issue.comic_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not comic_issue.url is empty %}
+    <dt>URL</dt><dd>Click <a href="{{ comic_issue.url }}">here</a> for more product info.</dd>
+    {% endif %}
+
+    {% if not comic_issue.notes is empty %}
+    <dt>Notes</dt><dd>{{ comic_issue.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/comic_issue_creators.html.twig', {entity: comic_issue}) }}
 </dl>
 {% endblock content %}

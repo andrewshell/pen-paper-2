@@ -20,11 +20,29 @@ class ComicIssuesAtlasRepository implements ComicIssuesRepository
             ComicIssueMapper::class,
             $id,
             [
-
+                'comic_title' => function ($title) {
+                    $title->with([
+                        'publisher',
+                    ]);
+                },
+                'comic_issue_creators' => function ($creator) {
+                    $creator->with([
+                        'creator',
+                        'credit',
+                    ]);
+                },
             ]
         )->getArrayCopy();
 
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['comic_issue_creators'],
+            [
+                'string creator.last_name asc',
+                'string creator.first_name asc',
+            ]
+        );
 
         return $entity;
     }

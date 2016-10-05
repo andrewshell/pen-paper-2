@@ -14,7 +14,7 @@ class ComicIssueMapper extends AbstractMapper
      */
     protected function setRelated()
     {
-        $this->oneToMany('comic_creators', ComicIssueCreatorMapper::class);
+        $this->oneToMany('comic_issue_creators', ComicIssueCreatorMapper::class);
         $this->manyToOne('comic_title', ComicTitleMapper::class);
     }
 }

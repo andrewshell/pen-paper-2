@@ -3,6 +3,14 @@
 {% block content %}
 <h1>{{ comic_title.title }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(comic_title) }}
+    {% if not comic_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ comic_title.publisher.publisher_id }}/">{{ comic_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not comic_title.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ comic_title.game_line.game_line_id }}/">{{ comic_title.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {{ include('inc/comic_issues.html.twig', {entity: comic_title}) }}
 </dl>
 {% endblock content %}

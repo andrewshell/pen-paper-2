@@ -33,11 +33,26 @@ class ComicTitlesAtlasRepository implements ComicTitlesRepository
             ComicTitleMapper::class,
             $id,
             [
-
+                'publisher',
+                'game_line',
+                'comic_issues',
             ]
         )->getArrayCopy();
 
+        foreach (array_keys($entity['comic_issues']) as $k) {
+            $entity['comic_issues'][$k]['comic_title'] = [
+                'title' => $entity['title'],
+            ];
+        }
+
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['comic_issues'],
+            [
+                'int issue_number desc',
+            ]
+        );
 
         return $entity;
     }
