@@ -16,7 +16,7 @@ class CreatorsAtlasRepository implements CreatorsRepository
 
     public function getCreatorsStartingWith($prefix = '')
     {
-        $creators = $this->atlas
+        $entitys = $this->atlas
             ->select(CreatorMapper::class)
             ->where('last_name LIKE ?', $prefix . '%')
             ->orderBy([
@@ -25,12 +25,12 @@ class CreatorsAtlasRepository implements CreatorsRepository
             ])
             ->fetchRecordSet();
 
-        return $creators;
+        return $entitys;
     }
 
     public function getCreatorById($id)
     {
-        $creator = $this->atlas->fetchRecord(
+        $entity = $this->atlas->fetchRecord(
             CreatorMapper::class,
             $id,
             [
@@ -129,7 +129,7 @@ class CreatorsAtlasRepository implements CreatorsRepository
         $sorter = new Sorter();
 
         $sorter->sort(
-            $creator['rpg_book_creators'],
+            $entity['rpg_book_creators'],
             [
                 'int rpg_book.copyright desc',
                 'string rpg_book.title asc',
@@ -137,7 +137,7 @@ class CreatorsAtlasRepository implements CreatorsRepository
         );
 
         $sorter->sort(
-            $creator['other_game_creators'],
+            $entity['other_game_creators'],
             [
                 'int other_game.copyright desc',
                 'string other_game.title asc',
@@ -145,7 +145,7 @@ class CreatorsAtlasRepository implements CreatorsRepository
         );
 
         $sorter->sort(
-            $creator['magazine_issue_creators'],
+            $entity['magazine_issue_creators'],
             [
                 'string magazine_issue.magazine_title.title asc',
                 'int magazine_issue.issue_number desc',
@@ -153,14 +153,14 @@ class CreatorsAtlasRepository implements CreatorsRepository
         );
 
         $sorter->sort(
-            $creator['magazine_article_creators'],
+            $entity['magazine_article_creators'],
             [
                 'string magazine_article.title asc',
             ]
         );
 
         $sorter->sort(
-            $creator['fiction_book_creators'],
+            $entity['fiction_book_creators'],
             [
                 'int fiction_book.copyright desc',
                 'string fiction_book.title asc',
@@ -168,20 +168,20 @@ class CreatorsAtlasRepository implements CreatorsRepository
         );
 
         $sorter->sort(
-            $creator['short_story_creators'],
+            $entity['short_story_creators'],
             [
                 'string short_story.title asc',
             ]
         );
 
         $sorter->sort(
-            $creator['comic_issue_creators'],
+            $entity['comic_issue_creators'],
             [
                 'string comic_issue.comic_title.title asc',
                 'int comic_issue.issue_number desc',
             ]
         );
 
-        return $creator;
+        return $entity;
     }
 }

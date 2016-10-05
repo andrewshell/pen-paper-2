@@ -46,6 +46,28 @@ class MagazineIssuesAtlasRepository implements MagazineIssuesRepository
 
         $sorter = new Sorter();
 
+        $sorter->sort(
+            $entity['magazine_articles'],
+            [
+                'string title asc',
+            ]
+        );
+
+        $sorter->sort(
+            $entity['magazine_issue_creators'],
+            [
+                'string creator.last_name asc',
+                'string creator.first_name asc',
+            ]
+        );
+
+        $sorter->sort(
+            $entity['short_stories'],
+            [
+                'string title asc',
+            ]
+        );
+
         return $entity;
     }
 }

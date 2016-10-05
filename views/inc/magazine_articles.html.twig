@@ -3,6 +3,7 @@
 <table class="table">
 <tr>
     <th>Article</th>
+    <th>Page #</th>
 </tr>
 {% for magazine_article in entity.magazine_articles %}
 <tr>
@@ -14,6 +15,7 @@
         {{ magazine_article.magazine_issue.magazine_title.title }} #{{ magazine_article.magazine_issue.issue_number}}
     </a> {% if magazine_article.magazine_issue.cover_date is not empty %}({{ magazine_article.magazine_issue.cover_date }}){% endif %}
     {% endif %}</th>
+    <td>{{ magazine_article.page }}</td>
 </tr>
 {% endfor %}
 </table>

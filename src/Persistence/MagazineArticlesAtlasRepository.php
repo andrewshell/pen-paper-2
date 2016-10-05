@@ -20,11 +20,34 @@ class MagazineArticlesAtlasRepository implements MagazineArticlesRepository
             MagazineArticleMapper::class,
             $id,
             [
-
+                'game_line',
+                'magazine_issue' => function ($issue) {
+                    $issue->with([
+                        'magazine_title' => function ($title) {
+                            $title->with([
+                                'publisher',
+                            ]);
+                        },
+                    ]);
+                },
+                'magazine_article_creators' => function ($creator) {
+                    $creator->with([
+                        'creator',
+                        'credit',
+                    ]);
+                },
             ]
         )->getArrayCopy();
 
         $sorter = new Sorter();
+
+        $sorter->sort(
+            $entity['magazine_article_creators'],
+            [
+                'string creator.last_name asc',
+                'string creator.first_name asc',
+            ]
+        );
 
         return $entity;
     }

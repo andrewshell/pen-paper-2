@@ -3,6 +3,28 @@
 {% block content %}
 <h1>{{ magazine_article.title }}</h1>
 <dl class="dl-horizontal">
-    {{ dump(magazine_article) }}
+    {% if magazine_article.magazine_issue is not empty %}
+    <dt>Magazine Issue</dt><dd><a href="/magazine-issue/{{ magazine_article.magazine_issue.magazine_issue_id }}/">
+        {{ magazine_article.magazine_issue.magazine_title.title }} #{{ magazine_article.magazine_issue.issue_number}}
+    </a> {% if magazine_article.magazine_issue.cover_date is not empty %}({{ magazine_article.magazine_issue.cover_date }}){% endif %}</dd>
+    {% endif %}
+
+    {% if magazine_article.page is not empty %}
+    <dt>Page #</dt><dd>{{ magazine_article.page }}</dd>
+    {% endif %}
+
+    {% if not magazine_article.magazine_issue.magazine_title.publisher is empty %}
+    <dt>Publisher</dt><dd><a href="/publisher/{{ magazine_article.magazine_issue.magazine_title.publisher.publisher_id }}/">{{ magazine_article.magazine_issue.magazine_title.publisher.publisher }}</a></dd>
+    {% endif %}
+
+    {% if not magazine_article.game_line is empty %}
+    <dt>Game Line</dt><dd><a href="/game-line/{{ magazine_article.game_line.game_line_id }}/">{{ magazine_article.game_line.game_line }}</a></dd>
+    {% endif %}
+
+    {% if not magazine_article.notes is empty %}
+    <dt>Notes</dt><dd>{{ magazine_article.notes | raw }}</dd>
+    {% endif %}
+
+    {{ include('inc/magazine_article_creators.html.twig', {entity: magazine_article}) }}
 </dl>
 {% endblock content %}
