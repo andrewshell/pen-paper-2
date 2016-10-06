@@ -1,4 +1,5 @@
 .DS_Store
 /config/conn.php
 /node_modules
+/relationships/elements.yml
 /vendor
