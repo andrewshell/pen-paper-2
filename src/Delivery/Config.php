@@ -3,6 +3,16 @@ namespace PenPaper\Delivery;
 
 use Aura\Di\Container;
 use Aura\Di\ContainerConfig;
+use DebugBar\Bridge\Twig\TraceableTwigEnvironment;
+use DebugBar\DataCollector\ExceptionsCollector;
+use DebugBar\DataCollector\MemoryCollector;
+use DebugBar\DataCollector\MessagesCollector;
+use DebugBar\DataCollector\PDO\PDOCollector;
+use DebugBar\DataCollector\PhpInfoCollector;
+use DebugBar\DataCollector\RequestDataCollector;
+use DebugBar\DataCollector\TimeDataCollector;
+use DebugBar\Bridge\Twig\TwigCollector;
+use PenPaper\Delivery\Twig\DebugBarTwigExtension;
 use PenPaper\Domain;
 use PenPaper\Persistence;
 use Radar\Adr\Handler\RoutingHandler;
@@ -21,12 +31,15 @@ class Config extends ContainerConfig
     {
         /** Services */
 
-        $di->set('twig:environment', $di->lazyNew(Twig_Environment::class));
+        $di->set('twig:environment', $di->lazyNew(TraceableTwigEnvironment::class));
+        $di->set('debugbar', $di->lazyNew(DebugBar::class));
+        $di->set('debugbar:renderer', $di->lazyGetCall('debugbar', 'getJavascriptRenderer'));
 
         /** DefaultResponder */
 
         $di->params[DefaultResponder::class] = [
             'twig' => $di->lazyGet('twig:environment'),
+            'debugBarRenderer' => $di->lazyGet('debugbar:renderer'),
         ];
 
         /** ExceptionHandler */
@@ -84,6 +97,28 @@ class Config extends ContainerConfig
         $di->setters[Twig_Environment::class]['setExtensions'] = new LazyArray([
             $di->lazyNew(Twig_Extension_Debug::class),
         ]);
+
+        /** Debug Bar */
+
+        $di->setters[DebugBar::class]['addCollectors'] = new LazyArray([
+            $di->lazyNew(PhpInfoCollector::class),
+            $di->lazyNew(MessagesCollector::class),
+            $di->lazyNew(RequestDataCollector::class),
+            $di->lazyNew(TimeDataCollector::class),
+            $di->lazyNew(MemoryCollector::class),
+            $di->lazyNew(ExceptionsCollector::class),
+            $di->lazyNew(TwigCollector::class),
+            $di->lazyNew(PDOCollector::class),
+        ]);
+
+        $di->params[TraceableTwigEnvironment::class] = [
+            'twig' => $di->lazyNew(Twig_Environment::class),
+            'timeDataCollector' => null,
+        ];
+
+        $di->params[TwigCollector::class] = [
+            'twig' => $di->lazyGet('twig:environment'),
+        ];
     }
 
     public function modify(Container $di)

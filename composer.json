@@ -8,7 +8,8 @@
         "radar/adr": "^1.1",
         "relay/middleware": "^1.1",
         "zendframework/zend-diactoros": "^1.3",
-        "twig/twig": "^1.25"
+        "twig/twig": "^1.25",
+        "maximebf/debugbar": "^1.13.0"
     },
     "require-dev": {
         "atlas/cli": "0.3.*@alpha",
