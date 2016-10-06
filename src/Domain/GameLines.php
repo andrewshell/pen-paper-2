@@ -15,6 +15,7 @@ class GameLines
         return [
             'success' => true,
             'game_lines' => $this->repo->getGameLinesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

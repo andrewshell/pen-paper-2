@@ -68,6 +68,13 @@ class MagazineIssuesAtlasRepository implements MagazineIssuesRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['magazine_issue_creators'],
+            'magazine_issue_id'
+        );
+
         return $entity;
     }
 }

@@ -1,11 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<ul class="list-inline">
-{% for letter in 'A' .. 'Z' %}
-    <li><a href="/comic-titles/{{ letter }}/">{{ letter }}</a></li>
-{% endfor %}
-</ul>
+{{ include('inc/pagination.html.twig', {slug: 'comic-titles', prefix: prefix}) }}
 
 {% if comic_titles | length > 0 %}
     <ul>

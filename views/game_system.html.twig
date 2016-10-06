@@ -1,0 +1,8 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h1>{{ game_system.game_system }}</h1>
+<dl class="dl-horizontal">
+    {{ include('inc/rpg_books.html.twig', {entity: game_system}) }}
+</dl>
+{% endblock content %}

@@ -6,9 +6,9 @@
 </tr>
 {% for comic_title in entity.comic_titles %}
 <tr>
-    <th><a href="/other-game/{{ comic_title.comic_title_id }}/">
+    <td><a href="/other-game/{{ comic_title.comic_title_id }}/">
         {{ comic_title.title }}
-    </a></th>
+    </a></td>
 </tr>
 {% endfor %}
 </table>

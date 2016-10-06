@@ -6,9 +6,9 @@
 </tr>
 {% for magazine_issue in entity.magazine_issues %}
 <tr>
-    <th><a href="/magazine-issue/{{ magazine_issue.magazine_issue_id }}/">
+    <td><a href="/magazine-issue/{{ magazine_issue.magazine_issue_id }}/">
         {{ magazine_issue.magazine_title.title }} #{{ magazine_issue.issue_number}}
-    </a> {% if magazine_issue.cover_date is not empty %}({{ magazine_issue.cover_date }}){% endif %}</th>
+    </a> {% if magazine_issue.cover_date is not empty %}({{ magazine_issue.cover_date }}){% endif %}</td>
 </tr>
 {% endfor %}
 </table>

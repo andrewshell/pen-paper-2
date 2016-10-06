@@ -72,6 +72,13 @@ class ShortStoriesAtlasRepository implements ShortStoriesRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['short_story_creators'],
+            'short_story_id'
+        );
+
         return $entity;
     }
 }

@@ -56,6 +56,13 @@ class OtherGamesAtlasRepository implements OtherGamesRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['other_game_creators'],
+            'other_game_id'
+        );
+
         return $entity;
     }
 }

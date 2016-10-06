@@ -15,6 +15,7 @@ class ShortStories
         return [
             'success' => true,
             'short_stories' => $this->repo->getShortStoriesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

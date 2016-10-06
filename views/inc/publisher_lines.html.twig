@@ -16,14 +16,14 @@
 {% for publisher_line in entity.publisher_lines %}
 <tr>
     {% if publisher_line.publisher is not empty %}
-    <th><a href="/publisher/{{ publisher_line.publisher.publisher_id }}/">
+    <td><a href="/publisher/{{ publisher_line.publisher.publisher_id }}/">
         {{ publisher_line.publisher.publisher }}</a>
-    </th>
+    </td>
     {% endif %}
     {% if publisher_line.game_line is not empty %}
-    <th><a href="/game-line/{{ publisher_line.game_line.game_line_id }}/">
+    <td><a href="/game-line/{{ publisher_line.game_line.game_line_id }}/">
         {{ publisher_line.game_line.game_line }}</a>
-    </th>
+    </td>
     {% endif %}
 </tr>
 {% endfor %}

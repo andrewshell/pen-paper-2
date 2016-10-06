@@ -1,11 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<ul class="list-inline">
-{% for letter in 'A' .. 'Z' %}
-    <li><a href="/short-stories/{{ letter }}/">{{ letter }}</a></li>
-{% endfor %}
-</ul>
+{{ include('inc/pagination.html.twig', {slug: 'short-stories', prefix: prefix}) }}
 
 {% if short_stories | length > 0 %}
     <ul>

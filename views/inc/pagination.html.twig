@@ -1,0 +1,5 @@
+<ul class="pagination">
+{% for letter in 'A' .. 'Z' %}
+    <li{% if prefix == letter %} class="active"{% endif %}><a href="/{{ slug }}/{{ letter }}/">{{ letter }}</a></li>
+{% endfor %}
+</ul>

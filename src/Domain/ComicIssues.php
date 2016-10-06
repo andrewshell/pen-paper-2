@@ -15,6 +15,7 @@ class ComicIssues
         return [
             'success' => true,
             'comic_issues' => $this->repo->getComicIssuesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

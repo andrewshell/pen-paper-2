@@ -22,22 +22,22 @@
 {% for rpg_book_creator in entity.rpg_book_creators %}
 <tr>
     {% if rpg_book_creator.creator is not empty %}
-    <th><a href="/creator/{{ rpg_book_creator.creator.creator_id }}/">
+    <td><a href="/creator/{{ rpg_book_creator.creator.creator_id }}/">
         {{ rpg_book_creator.creator.last_name }}{{ rpg_book_creator.creator.first_name ? ', ' : '' }}{{ rpg_book_creator.creator.first_name }}
-    </a></th>
+    </a></td>
     {% endif %}
     {% if rpg_book_creator.rpg_book is not empty %}
-    <th><a href="/rpg-book/{{ rpg_book_creator.rpg_book.rpg_book_id }}/">
+    <td><a href="/rpg-book/{{ rpg_book_creator.rpg_book.rpg_book_id }}/">
         {{ rpg_book_creator.rpg_book.title }}
         {% if rpg_book_creator.rpg_book.game_line.game_line not in rpg_book_creator.rpg_book.title %}({{ rpg_book_creator.rpg_book.game_line.game_line }}){% endif %}
         {% if rpg_book_creator.rpg_book.copyright is not empty %}({{ rpg_book_creator.rpg_book.copyright }}){% endif %}
-    </a></th>
+    </a></td>
     {% if rpg_book_creator.rpg_book.publisher is not empty %}
-    <th><a href="/publisher/{{ rpg_book_creator.rpg_book.publisher.publisher_id }}/">{{ rpg_book_creator.rpg_book.publisher.publisher }}</a></th>
+    <td><a href="/publisher/{{ rpg_book_creator.rpg_book.publisher.publisher_id }}/">{{ rpg_book_creator.rpg_book.publisher.publisher }}</a></td>
     {% endif %}
     {% endif %}
     {% if rpg_book_creator.credit is not empty %}
-    <th>{{ rpg_book_creator.credit.credit }}</th>
+    <td>{{ rpg_book_creator.credit.credit }}</td>
     {% endif %}
 </tr>
 {% endfor %}

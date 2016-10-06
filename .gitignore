@@ -1,3 +1,4 @@
 .DS_Store
 /config/conn.php
+/node_modules
 /vendor

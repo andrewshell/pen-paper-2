@@ -15,6 +15,7 @@ class ComicTitles
         return [
             'success' => true,
             'comic_titles' => $this->repo->getComicTitlesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

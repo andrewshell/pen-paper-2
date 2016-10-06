@@ -1,18 +1,23 @@
 {% if not entity.other_games is empty %}
-<h2>Other Games</h2>
 <table class="table">
 <tr>
-    <th>Product</th>
+    <th>Game</th>
+    {% if entity.other_games[0].publisher is not empty %}
+    <th>Publisher</th>
+    {% endif %}
 </tr>
 {% for other_game in entity.other_games %}
 <tr>
-    <th><a href="/other-game/{{ other_game.other_game_id }}/">
+    <td><a href="/other-game/{{ other_game.other_game_id }}/">
         {{ other_game.title }}
         {% if other_game.game_line is not empty %}
         {% if other_game.game_line.game_line not in other_game.title %}({{ other_game.game_line.game_line }}){% endif %}
         {% endif %}
         {% if other_game.copyright is not empty %}({{ other_game.copyright }}){% endif %}
-    </a></th>
+    </a></td>
+    {% if other_game.publisher is not empty %}
+    <td><a href="/rpg-book/{{ other_game.publisher.publisher_id }}/">{{ other_game.publisher.publisher }}</a></td>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

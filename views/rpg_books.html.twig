@@ -1,11 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<ul class="list-inline">
-{% for letter in 'A' .. 'Z' %}
-    <li><a href="/rpg-books/{{ letter }}/">{{ letter }}</a></li>
-{% endfor %}
-</ul>
+{{ include('inc/pagination.html.twig', {slug: 'rpg-books', prefix: prefix}) }}
 
 {% if rpg_books | length > 0 %}
     <ul>

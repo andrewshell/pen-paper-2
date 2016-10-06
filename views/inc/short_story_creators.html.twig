@@ -19,12 +19,12 @@
 {% for short_story_creator in entity.short_story_creators %}
 <tr>
     {% if short_story_creator.creator is not empty %}
-    <th><a href="/creator/{{ short_story_creator.creator.creator_id }}/">
+    <td><a href="/creator/{{ short_story_creator.creator.creator_id }}/">
         {{ short_story_creator.creator.last_name }}{{ short_story_creator.creator.first_name ? ', ' : '' }}{{ short_story_creator.creator.first_name }}
-    </a></th>
+    </a></td>
     {% endif %}
     {% if short_story_creator.short_story is not empty %}
-    <th><a href="/short-story/{{ short_story_creator.short_story.short_story_id }}/">
+    <td><a href="/short-story/{{ short_story_creator.short_story.short_story_id }}/">
         "{{ short_story_creator.short_story.title }}"</a>
         {% if short_story_creator.short_story.game_line.game_line not in short_story_creator.short_story.title %}({{ short_story_creator.short_story.game_line.game_line }}){% endif %}
         {% if not short_story_creator.short_story.magazine is empty %}
@@ -42,10 +42,10 @@
             {{ short_story_creator.short_story.rpg_book.title }}
             </a>
         {% endif %}
-    </th>
+    </td>
     {% endif %}
     {% if short_story_creator.credit is not empty %}
-    <th>{{ short_story_creator.credit.credit }}</th>
+    <td>{{ short_story_creator.credit.credit }}</td>
     {% endif %}
 </tr>
 {% endfor %}

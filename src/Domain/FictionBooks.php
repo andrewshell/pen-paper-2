@@ -15,6 +15,7 @@ class FictionBooks
         return [
             'success' => true,
             'fiction_books' => $this->repo->getFictionBooksStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

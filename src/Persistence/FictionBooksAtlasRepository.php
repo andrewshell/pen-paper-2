@@ -66,6 +66,13 @@ class FictionBooksAtlasRepository implements FictionBooksRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['fiction_book_creators'],
+            'fiction_book_id'
+        );
+
         return $entity;
     }
 }

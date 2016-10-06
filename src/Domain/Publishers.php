@@ -15,6 +15,7 @@ class Publishers
         return [
             'success' => true,
             'publishers' => $this->repo->getPublishersStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

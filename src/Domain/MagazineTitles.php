@@ -15,6 +15,7 @@ class MagazineTitles
         return [
             'success' => true,
             'magazine_titles' => $this->repo->getMagazineTitlesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

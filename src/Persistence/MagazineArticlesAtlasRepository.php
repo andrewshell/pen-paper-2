@@ -49,6 +49,13 @@ class MagazineArticlesAtlasRepository implements MagazineArticlesRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['magazine_article_creators'],
+            'magazine_article_id'
+        );
+
         return $entity;
     }
 }

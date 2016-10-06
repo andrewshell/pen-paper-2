@@ -182,6 +182,43 @@ class CreatorsAtlasRepository implements CreatorsRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['rpg_book_creators'],
+            'rpg_book_id'
+        );
+
+        $merger->merge(
+            $entity['other_game_creators'],
+            'other_game_id'
+        );
+
+        $merger->merge(
+            $entity['magazine_issue_creators'],
+            'magazine_issue_id'
+        );
+
+        $merger->merge(
+            $entity['magazine_article_creators'],
+            'magazine_article_id'
+        );
+
+        $merger->merge(
+            $entity['fiction_book_creators'],
+            'fiction_book_id'
+        );
+
+        $merger->merge(
+            $entity['short_story_creators'],
+            'short_story_id'
+        );
+
+        $merger->merge(
+            $entity['comic_issue_creators'],
+            'comic_issue_id'
+        );
+
         return $entity;
     }
 }

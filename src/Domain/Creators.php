@@ -15,6 +15,7 @@ class Creators
         return [
             'success' => true,
             'creators' => $this->repo->getCreatorsStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

@@ -19,17 +19,17 @@
 {% for magazine_issue_creator in entity.magazine_issue_creators %}
 <tr>
     {% if magazine_issue_creator.creator is not empty %}
-    <th><a href="/creator/{{ magazine_issue_creator.creator.creator_id }}/">
+    <td><a href="/creator/{{ magazine_issue_creator.creator.creator_id }}/">
         {{ magazine_issue_creator.creator.last_name }}{{ magazine_issue_creator.creator.first_name ? ', ' : '' }}{{ magazine_issue_creator.creator.first_name }}
-    </a></th>
+    </a></td>
     {% endif %}
     {% if magazine_issue_creator.magazine_issue is not empty %}
-    <th><a href="/magazine-issue/{{ magazine_issue_creator.magazine_issue.magazine_issue_id }}/">
+    <td><a href="/magazine-issue/{{ magazine_issue_creator.magazine_issue.magazine_issue_id }}/">
         {{ magazine_issue_creator.magazine_issue.magazine_title.title }} #{{ magazine_issue_creator.magazine_issue.issue_number}}
-    </a> {% if magazine_issue_creator.magazine_issue.cover_date is not empty %}({{ magazine_issue_creator.magazine_issue.cover_date }}){% endif %}</th>
+    </a> {% if magazine_issue_creator.magazine_issue.cover_date is not empty %}({{ magazine_issue_creator.magazine_issue.cover_date }}){% endif %}</td>
     {% endif %}
     {% if magazine_issue_creator.credit is not empty %}
-    <th>{{ magazine_issue_creator.credit.credit }}</th>
+    <td>{{ magazine_issue_creator.credit.credit }}</td>
     {% endif %}
 </tr>
 {% endfor %}

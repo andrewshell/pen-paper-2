@@ -3,16 +3,22 @@
 <table class="table">
 <tr>
     <th>Book</th>
+    {% if entity.rpg_books[0].publisher is not empty %}
+    <th>Publisher</th>
+    {% endif %}
 </tr>
 {% for rpg_book in entity.rpg_books %}
 <tr>
-    <th><a href="/other-game/{{ rpg_book.rpg_book_id }}/">
+    <td><a href="/rpg-book/{{ rpg_book.rpg_book_id }}/">
         {{ rpg_book.title }}
         {% if rpg_book.game_line is not empty %}
         {% if rpg_book.game_line.game_line not in rpg_book.title %}({{ rpg_book.game_line.game_line }}){% endif %}
         {% endif %}
         {% if rpg_book.copyright is not empty %}({{ rpg_book.copyright }}){% endif %}
-    </a></th>
+    </a></td>
+    {% if rpg_book.publisher is not empty %}
+    <td><a href="/rpg-book/{{ rpg_book.publisher.publisher_id }}/">{{ rpg_book.publisher.publisher }}</a></td>
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

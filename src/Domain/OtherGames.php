@@ -15,6 +15,7 @@ class OtherGames
         return [
             'success' => true,
             'other_games' => $this->repo->getOtherGamesStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

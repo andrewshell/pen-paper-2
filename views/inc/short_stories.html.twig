@@ -7,10 +7,10 @@
 </tr>
 {% for short_story in entity.short_stories %}
 <tr>
-    <th><a href="/short-story/{{ short_story.short_story_id }}/">
+    <td><a href="/short-story/{{ short_story.short_story_id }}/">
         {{ short_story.title }}
-    </a></th>
-    <th>{{ short_story.page }}</th>
+    </a></td>
+    <td>{{ short_story.page }}</td>
 </tr>
 {% endfor %}
 </table>

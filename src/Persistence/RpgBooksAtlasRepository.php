@@ -69,6 +69,13 @@ class RpgBooksAtlasRepository implements RpgBooksRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['rpg_book_creators'],
+            'rpg_book_id'
+        );
+
         return $entity;
     }
 }

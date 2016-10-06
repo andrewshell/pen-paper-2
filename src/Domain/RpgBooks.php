@@ -15,6 +15,7 @@ class RpgBooks
         return [
             'success' => true,
             'rpg_books' => $this->repo->getRpgBooksStartingWith($params['prefix']),
+            'prefix' => $params['prefix'],
         ];
     }
 }

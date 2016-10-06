@@ -44,6 +44,13 @@ class ComicIssuesAtlasRepository implements ComicIssuesRepository
             ]
         );
 
+        $merger = new CreditMerger();
+
+        $merger->merge(
+            $entity['comic_issue_creators'],
+            'comic_issue_id'
+        );
+
         return $entity;
     }
 }

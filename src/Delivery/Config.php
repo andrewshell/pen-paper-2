@@ -50,6 +50,8 @@ class Config extends ContainerConfig
             ['ShortStories', 'ShortStory'],
             ['Publishers', 'Publisher'],
             ['GameLines', 'GameLine'],
+            ['GameSystems', 'GameSystem'],
+            ['GameTypes', 'GameType'],
         ];
 
         foreach ($domains as $domain) {
@@ -115,6 +117,8 @@ class Config extends ContainerConfig
             ['short_stories', 'short_story'],
             ['publishers', 'publisher'],
             ['game_lines', 'game_line'],
+            ['game_systems', 'game_system'],
+            [false, 'game_type'],
         ];
 
         foreach ($domains as $domain) {

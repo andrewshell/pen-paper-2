@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+{{ include('inc/pagination.html.twig', {slug: 'game-systems', prefix: prefix}) }}
+
+{% if game_systems | length > 0 %}
+    <ul>
+    {% for game_system in game_systems %}
+        <li><a href="/game-system/{{ game_system.game_system_id }}/">
+            {{ game_system.game_system }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Publishers Found</p>
+{% endif %}
+{% endblock content %}
