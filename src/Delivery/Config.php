@@ -33,6 +33,7 @@ class Config extends ContainerConfig
 
         $di->set('twig:environment', $di->lazyNew(TraceableTwigEnvironment::class));
         $di->set('debugbar', $di->lazyNew(DebugBar::class));
+        $di->set('debugbar:tdc', $di->lazyNew(TimeDataCollector::class));
         $di->set('debugbar:renderer', $di->lazyGetCall('debugbar', 'getJavascriptRenderer'));
 
         /** DefaultResponder */
@@ -104,7 +105,7 @@ class Config extends ContainerConfig
             $di->lazyNew(PhpInfoCollector::class),
             $di->lazyNew(MessagesCollector::class),
             $di->lazyNew(RequestDataCollector::class),
-            $di->lazyNew(TimeDataCollector::class),
+            $di->lazyGet('debugbar:tdc'),
             $di->lazyNew(MemoryCollector::class),
             $di->lazyNew(ExceptionsCollector::class),
             $di->lazyNew(TwigCollector::class),
@@ -113,7 +114,7 @@ class Config extends ContainerConfig
 
         $di->params[TraceableTwigEnvironment::class] = [
             'twig' => $di->lazyNew(Twig_Environment::class),
-            'timeDataCollector' => null,
+            'timeDataCollector' => $di->lazyGet('debugbar:tdc'),
         ];
 
         $di->params[TwigCollector::class] = [

@@ -36,7 +36,7 @@ class Config extends ContainerConfig
 
         $di->params[PDOCollector::class] = [
             'pdo' => $di->lazyGet('pdo'),
-            'timeCollector' => null,
+            'timeCollector' => $di->lazyGet('debugbar:tdc'),
         ];
     }
 
