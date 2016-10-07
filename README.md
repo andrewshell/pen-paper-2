@@ -25,5 +25,6 @@ These are the basic steps:
 3. Set up MySQL database
 4. Copy `config/conn.dist.php` to `config/conn.php`
 5. Update `config/conn.php` with MySQL credentials
-6. Run `composer install`
-7. Hopefully the site works!
+6. Import `schema/pen-paper-2_2016-10-06.sql` into your database
+7. Run `composer install`
+8. Hopefully the site works!
