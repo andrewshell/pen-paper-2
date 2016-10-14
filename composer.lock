@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61725a38dcf22c6e0ddcd6e9b370cc5e",
-    "content-hash": "9a7662a584d2845bb600916f091a7829",
+    "hash": "6cc44644ef6487183644793ba1012083",
+    "content-hash": "c4b55f3ec0730e938d0984fe4bf6ab76",
     "packages": [
         {
             "name": "arbiter/arbiter",
@@ -56,16 +56,16 @@
         },
         {
             "name": "atlas/orm",
-            "version": "0.3.0-alpha",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atlasphp/Atlas.Orm.git",
-                "reference": "ed473b630087192483dd1cc79383b400913f1afd"
+                "reference": "414fbfed301288ffed22d5c061ceff1f0e04adbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atlasphp/Atlas.Orm/zipball/ed473b630087192483dd1cc79383b400913f1afd",
-                "reference": "ed473b630087192483dd1cc79383b400913f1afd",
+                "url": "https://api.github.com/repos/atlasphp/Atlas.Orm/zipball/414fbfed301288ffed22d5c061ceff1f0e04adbc",
+                "reference": "414fbfed301288ffed22d5c061ceff1f0e04adbc",
                 "shasum": ""
             },
             "require": {
@@ -75,6 +75,9 @@
             },
             "require-dev": {
                 "atlas/cli": "0.x-dev"
+            },
+            "suggest": {
+                "atlas/cli": "0.x command-line interface for atlas for development use"
             },
             "type": "library",
             "autoload": {
@@ -101,7 +104,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2016-02-18 19:58:07"
+            "time": "2016-10-14 16:42:52"
         },
         {
             "name": "aura/di",
@@ -343,16 +346,16 @@
         },
         {
             "name": "aura/sqlquery",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.SqlQuery.git",
-                "reference": "1dd7729db77d6a96c919bad843d765abdfe14464"
+                "reference": "dd81b57aeb43628180a9c70a4df58d872024d7f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.SqlQuery/zipball/1dd7729db77d6a96c919bad843d765abdfe14464",
-                "reference": "1dd7729db77d6a96c919bad843d765abdfe14464",
+                "url": "https://api.github.com/repos/auraphp/Aura.SqlQuery/zipball/dd81b57aeb43628180a9c70a4df58d872024d7f2",
+                "reference": "dd81b57aeb43628180a9c70a4df58d872024d7f2",
                 "shasum": ""
             },
             "require": {
@@ -403,7 +406,40 @@
                 "sqlserver",
                 "update"
             ],
-            "time": "2016-09-02 22:10:12"
+            "time": "2016-10-03 20:34:56"
+        },
+        {
+            "name": "cadre/atlasorm-debugbar-bridge",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cadrephp/AtlasOrm.DebugBar.Bridge.git",
+                "reference": "b35a5b0e13c2b22aa776add657b2019dfc76f8d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cadrephp/AtlasOrm.DebugBar.Bridge/zipball/b35a5b0e13c2b22aa776add657b2019dfc76f8d6",
+                "reference": "b35a5b0e13c2b22aa776add657b2019dfc76f8d6",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cadre\\AtlasOrmDebugBarBridge\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Shell",
+                    "email": "andrew@andrewshell.org"
+                }
+            ],
+            "description": "Library to use PHP DebugBar with Atlas ORM",
+            "time": "2016-10-14 18:02:14"
         },
         {
             "name": "container-interop/container-interop",
@@ -545,16 +581,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -588,7 +624,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "radar/adr",
@@ -893,16 +929,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "a60da179c37f2c4e44ef734d0b92824a58943f7f"
+                "reference": "969ff423d3f201da3ff718a5831bb999bb0669b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/a60da179c37f2c4e44ef734d0b92824a58943f7f",
-                "reference": "a60da179c37f2c4e44ef734d0b92824a58943f7f",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/969ff423d3f201da3ff718a5831bb999bb0669b0",
+                "reference": "969ff423d3f201da3ff718a5831bb999bb0669b0",
                 "shasum": ""
             },
             "require": {
@@ -939,22 +975,22 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2016-09-07 17:57:29"
+            "time": "2016-10-11 13:25:21"
         }
     ],
     "packages-dev": [
         {
             "name": "atlas/cli",
-            "version": "0.3.0-alpha",
+            "version": "0.4.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atlasphp/Atlas.Cli.git",
-                "reference": "07bca53ebd43158e5e684f65d1ec2f9f7fdf0efd"
+                "reference": "28b09d346b2b113c8f55e0b75edf4b399ff0fa04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atlasphp/Atlas.Cli/zipball/07bca53ebd43158e5e684f65d1ec2f9f7fdf0efd",
-                "reference": "07bca53ebd43158e5e684f65d1ec2f9f7fdf0efd",
+                "url": "https://api.github.com/repos/atlasphp/Atlas.Cli/zipball/28b09d346b2b113c8f55e0b75edf4b399ff0fa04",
+                "reference": "28b09d346b2b113c8f55e0b75edf4b399ff0fa04",
                 "shasum": ""
             },
             "require": {
@@ -991,7 +1027,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2016-02-18 19:16:04"
+            "time": "2016-04-09 14:11:59"
         },
         {
             "name": "aura/cli",
@@ -1161,7 +1197,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "atlas/orm": 15,
+        "atlas/orm": 20,
         "atlas/cli": 15
     },
     "prefer-stable": false,

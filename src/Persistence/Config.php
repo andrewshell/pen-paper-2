@@ -1,7 +1,8 @@
 <?php
 namespace PenPaper\Persistence;
 
-use PenPaper\Persistence\DebugBar\AtlasContainer;
+use Cadre\AtlasOrmDebugBarBridge\AtlasContainer;
+use Cadre\AtlasOrmDebugBarBridge\AtlasOrmCollector;
 use Aura\Di\Container;
 use Aura\Di\ContainerConfig;
 use DebugBar\DataCollector\PDO\PDOCollector;
@@ -12,9 +13,6 @@ class Config extends ContainerConfig
     {
         $di->set('atlas:container', $di->lazyNew(AtlasContainer::class));
         $di->set('atlas', $di->lazyGetCall('atlas:container', 'getAtlas'));
-        $di->set('atlas:cl', $di->lazyGetCall('atlas:container', 'getConnectionLocator'));
-        $di->set('pdo:extended', $di->lazyGetCall('atlas:cl', 'getDefault'));
-        $di->set('pdo', $di->lazyGetCall('pdo:extended', 'getPdo'));
 
         $conn = include(__DIR__ . '/../../config/conn.php');
 
@@ -34,8 +32,8 @@ class Config extends ContainerConfig
 
         $di->setters[AtlasContainer::class]['setMappers'] = $mappers;
 
-        $di->params[PDOCollector::class] = [
-            'pdo' => $di->lazyGet('pdo'),
+        $di->params[AtlasOrmCollector::class] = [
+            'atlasContainer' => $di->lazyGet('atlas:container'),
             'timeCollector' => $di->lazyGet('debugbar:tdc'),
         ];
     }

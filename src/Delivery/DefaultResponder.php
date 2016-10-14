@@ -1,12 +1,13 @@
 <?php
 namespace PenPaper\Delivery;
 
+use Radar\Adr\Responder\ResponderAcceptsInterface;
 use DebugBar\JavascriptRenderer;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Twig_Environment;
 
-class DefaultResponder
+class DefaultResponder implements ResponderAcceptsInterface
 {
     protected $request;
     protected $response;
@@ -17,6 +18,11 @@ class DefaultResponder
     {
         $this->twig = $twig;
         $this->debugBarRenderer = $debugBarRenderer;
+    }
+
+    public static function accepts()
+    {
+        return ['text/html', 'application/json'];
     }
 
     public function __invoke(
@@ -32,6 +38,12 @@ class DefaultResponder
             $this->error($payload);
         }
         return $this->response;
+    }
+
+    protected function jsonBody(array $data)
+    {
+        $this->response = $this->response->withHeader('Content-Type', 'application/json');
+        $this->response->getBody()->write(json_encode($data));
     }
 
     protected function htmlBody(array $data)
@@ -55,7 +67,11 @@ class DefaultResponder
     protected function success($payload)
     {
         $this->response = $this->response->withStatus(200);
-        $this->htmlBody($payload);
+        if ('application/json' === $this->request->getHeaderLine('Accept')) {
+            $this->jsonBody($payload);
+        } else {
+            $this->htmlBody($payload);
+        }
     }
 
     protected function error($payload)

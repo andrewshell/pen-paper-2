@@ -3,11 +3,11 @@ namespace PenPaper\Delivery;
 
 use Aura\Di\Container;
 use Aura\Di\ContainerConfig;
+use Cadre\AtlasOrmDebugBarBridge\AtlasOrmCollector;
 use DebugBar\Bridge\Twig\TraceableTwigEnvironment;
 use DebugBar\DataCollector\ExceptionsCollector;
 use DebugBar\DataCollector\MemoryCollector;
 use DebugBar\DataCollector\MessagesCollector;
-use DebugBar\DataCollector\PDO\PDOCollector;
 use DebugBar\DataCollector\PhpInfoCollector;
 use DebugBar\DataCollector\RequestDataCollector;
 use DebugBar\DataCollector\TimeDataCollector;
@@ -109,7 +109,7 @@ class Config extends ContainerConfig
             $di->lazyNew(MemoryCollector::class),
             $di->lazyNew(ExceptionsCollector::class),
             $di->lazyNew(TwigCollector::class),
-            $di->lazyNew(PDOCollector::class),
+            $di->lazyNew(AtlasOrmCollector::class),
         ]);
 
         $di->params[TraceableTwigEnvironment::class] = [

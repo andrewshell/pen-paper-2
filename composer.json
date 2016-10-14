@@ -4,15 +4,16 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "atlas/orm": "0.3.*@alpha",
+        "atlas/orm": "1.x-dev@dev",
         "radar/adr": "^1.1",
         "relay/middleware": "^1.1",
         "zendframework/zend-diactoros": "^1.3",
         "twig/twig": "^1.25",
-        "maximebf/debugbar": "^1.13.0"
+        "maximebf/debugbar": "^1.13.0",
+        "cadre/atlasorm-debugbar-bridge": "^1.0"
     },
     "require-dev": {
-        "atlas/cli": "0.3.*@alpha",
+        "atlas/cli": "0.4.*@alpha",
         "symfony/yaml": "^3.0"
     },
     "autoload": {
