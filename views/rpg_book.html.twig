@@ -51,6 +51,14 @@
     <dt>URL</dt><dd>Click <a href="{{ rpg_book.url }}">here</a> for more product info.</dd>
     {% endif %}
 
+    {% if rpg_book.drivethru > 0 %}
+    <dt>DriveThruRPG.com</dt><dd><a href="http://www.drivethrurpg.com/product/{{ rpg_book.drivethru }}/?affiliate_id=308266">Buy on DriveThruRPG.com</a></dd>
+    {% endif %}
+
+    {% if not rpg_book.isbn is empty %}
+    <dt>Amazon</dt><dd><a href="https://www.amazon.com/dp/{{ rpg_book.isbn | replace({'-': ''}) }}/?tag=andshesweb-20">Buy on Amazon.com</a></dd>
+    {% endif %}
+
     {% if not rpg_book.notes is empty %}
     <dt>Notes</dt><dd>{{ rpg_book.notes | raw }}</dd>
     {% endif %}
