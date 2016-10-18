@@ -31,6 +31,10 @@
     <dt>URL</dt><dd>Click <a href="{{ fiction_book.url }}">here</a> for more product info.</dd>
     {% endif %}
 
+    {% if not fiction_book.isbn is empty %}
+    <dt>Amazon</dt><dd><a href="https://www.amazon.com/dp/{{ fiction_book.isbn | replace({'-': ''}) }}/?tag=andshesweb-20">Buy on Amazon.com</a></dd>
+    {% endif %}
+
     {% if not fiction_book.notes is empty %}
     <dt>Notes</dt><dd>{{ fiction_book.notes | raw }}</dd>
     {% endif %}

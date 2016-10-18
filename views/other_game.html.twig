@@ -35,6 +35,10 @@
     <dt>URL</dt><dd>Click <a href="{{ other_game.url }}">here</a> for more product info.</dd>
     {% endif %}
 
+    {% if not other_game.isbn is empty %}
+    <dt>Amazon</dt><dd><a href="https://www.amazon.com/dp/{{ other_game.isbn | replace({'-': ''}) }}/?tag=andshesweb-20">Buy on Amazon.com</a></dd>
+    {% endif %}
+
     {% if not other_game.notes is empty %}
     <dt>Notes</dt><dd>{{ other_game.notes | raw }}</dd>
     {% endif %}
