@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6cc44644ef6487183644793ba1012083",
-    "content-hash": "c4b55f3ec0730e938d0984fe4bf6ab76",
+    "hash": "8f067302df65b7d2bf7a0ffc380401d7",
+    "content-hash": "6a59f16ff7895b9fc36aab65dc05a4a9",
     "packages": [
         {
             "name": "arbiter/arbiter",
@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atlasphp/Atlas.Orm.git",
-                "reference": "414fbfed301288ffed22d5c061ceff1f0e04adbc"
+                "reference": "6c5cb235aa48040182ea6b8f31974e6cc6fddf5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atlasphp/Atlas.Orm/zipball/414fbfed301288ffed22d5c061ceff1f0e04adbc",
-                "reference": "414fbfed301288ffed22d5c061ceff1f0e04adbc",
+                "url": "https://api.github.com/repos/atlasphp/Atlas.Orm/zipball/6c5cb235aa48040182ea6b8f31974e6cc6fddf5e",
+                "reference": "6c5cb235aa48040182ea6b8f31974e6cc6fddf5e",
                 "shasum": ""
             },
             "require": {
@@ -104,7 +104,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2016-10-14 16:42:52"
+            "time": "2016-10-19 11:59:10"
         },
         {
             "name": "aura/di",
@@ -410,17 +410,24 @@
         },
         {
             "name": "cadre/atlasorm-debugbar-bridge",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cadrephp/AtlasOrm.DebugBar.Bridge.git",
-                "reference": "b35a5b0e13c2b22aa776add657b2019dfc76f8d6"
+                "reference": "877bfa2d7884d461533b6ada34a25e833059b912"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cadrephp/AtlasOrm.DebugBar.Bridge/zipball/b35a5b0e13c2b22aa776add657b2019dfc76f8d6",
-                "reference": "b35a5b0e13c2b22aa776add657b2019dfc76f8d6",
+                "url": "https://api.github.com/repos/cadrephp/AtlasOrm.DebugBar.Bridge/zipball/877bfa2d7884d461533b6ada34a25e833059b912",
+                "reference": "877bfa2d7884d461533b6ada34a25e833059b912",
                 "shasum": ""
+            },
+            "require-dev": {
+                "atlas/orm": "0.x-dev@dev",
+                "maximebf/debugbar": "^1.13.0",
+                "phpunit/dbunit": "^2.0",
+                "phpunit/phpunit": "^5.0",
+                "squizlabs/php_codesniffer": "^2.6.2"
             },
             "type": "library",
             "autoload": {
@@ -439,7 +446,48 @@
                 }
             ],
             "description": "Library to use PHP DebugBar with Atlas ORM",
-            "time": "2016-10-14 18:02:14"
+            "time": "2016-10-20 13:00:53"
+        },
+        {
+            "name": "cadre/module",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cadrephp/Cadre.Module.git",
+                "reference": "d2a70c42ff9fcb40aee1aa9c2c2b2ef6c5bc7958"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cadrephp/Cadre.Module/zipball/d2a70c42ff9fcb40aee1aa9c2c2b2ef6c5bc7958",
+                "reference": "d2a70c42ff9fcb40aee1aa9c2c2b2ef6c5bc7958",
+                "shasum": ""
+            },
+            "require": {
+                "aura/di": "~3.0"
+            },
+            "require-dev": {
+                "phing/phing": "^2.15",
+                "phpunit/phpunit": "^5.0",
+                "squizlabs/php_codesniffer": "^2.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cadre\\Module\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Shell",
+                    "email": "andrew@andrewshell.org"
+                }
+            ],
+            "description": "Module system based on Aura.Di",
+            "time": "2016-10-20 15:10:22"
         },
         {
             "name": "container-interop/container-interop",
@@ -805,16 +853,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "70bfe927b86ba9999aeebd829715b0bb2cd39a10"
+                "reference": "4dc2f03b480c43f1665d3317d827a04ed6ffd11e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/70bfe927b86ba9999aeebd829715b0bb2cd39a10",
-                "reference": "70bfe927b86ba9999aeebd829715b0bb2cd39a10",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/4dc2f03b480c43f1665d3317d827a04ed6ffd11e",
+                "reference": "4dc2f03b480c43f1665d3317d827a04ed6ffd11e",
                 "shasum": ""
             },
             "require": {
@@ -864,20 +912,20 @@
                 "debug",
                 "dump"
             ],
-            "time": "2016-09-29 14:13:09"
+            "time": "2016-10-18 15:46:07"
         },
         {
             "name": "twig/twig",
-            "version": "v1.26.1",
+            "version": "v1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d"
+                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
-                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
+                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
                 "shasum": ""
             },
             "require": {
@@ -890,7 +938,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.26-dev"
+                    "dev-master": "1.27-dev"
                 }
             },
             "autoload": {
@@ -925,7 +973,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-05 18:57:41"
+            "time": "2016-10-25 19:17:17"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -1146,16 +1194,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3"
+                "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/368b9738d4033c8b93454cb0dbd45d305135a6d3",
-                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/7ff51b06c6c3d5cc6686df69004a42c69df09e27",
+                "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27",
                 "shasum": ""
             },
             "require": {
@@ -1191,7 +1239,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-25 08:27:07"
+            "time": "2016-10-24 18:41:13"
         }
     ],
     "aliases": [],

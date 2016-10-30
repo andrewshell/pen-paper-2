@@ -2,7 +2,6 @@
 namespace PenPaper\Delivery;
 
 use Radar\Adr\Responder\ResponderAcceptsInterface;
-use DebugBar\JavascriptRenderer;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Twig_Environment;
@@ -12,12 +11,12 @@ class DefaultResponder implements ResponderAcceptsInterface
     protected $request;
     protected $response;
     protected $twig;
-    protected $debugBarRenderer;
+    protected $debugbar;
 
-    public function __construct(Twig_Environment $twig, JavascriptRenderer $debugBarRenderer)
+    public function __construct(Twig_Environment $twig, DebugBar $debugbar = null)
     {
         $this->twig = $twig;
-        $this->debugBarRenderer = $debugBarRenderer;
+        $this->debugbar = $debugbar;
     }
 
     public static function accepts()
@@ -50,16 +49,21 @@ class DefaultResponder implements ResponderAcceptsInterface
     {
         $view = $this->request->getAttribute('_view', 'index.html.twig');
         $body = $this->twig->render($view, $data);
-        $body = str_replace(
-            '<!-- DebugBar::renderHead -->',
-            str_replace(
-                '/vendor/maximebf/debugbar/src/DebugBar/Resources',
-                '/debugbar',
-                $this->debugBarRenderer->renderHead()
-            ),
-            $body
-        );
-        $body = str_replace('<!-- DebugBar::render -->', $this->debugBarRenderer->render(), $body);
+
+        if (isset($this->debugbar)) {
+            $debugbarRenderer = $this->debugbar->getJavascriptRenderer();
+            $body = str_replace(
+                '<!-- DebugBar::renderHead -->',
+                str_replace(
+                    '/vendor/maximebf/debugbar/src/DebugBar/Resources',
+                    '/debugbar',
+                    $debugbarRenderer->renderHead()
+                ),
+                $body
+            );
+            $body = str_replace('<!-- DebugBar::render -->', $debugbarRenderer->render(), $body);
+        }
+
         $this->response = $this->response->withHeader('Content-Type', 'text/html');
         $this->response->getBody()->write($body);
     }

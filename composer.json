@@ -10,7 +10,8 @@
         "zendframework/zend-diactoros": "^1.3",
         "twig/twig": "^1.25",
         "maximebf/debugbar": "^1.13.0",
-        "cadre/atlasorm-debugbar-bridge": "^1.0"
+        "cadre/atlasorm-debugbar-bridge": "^1.0",
+        "cadre/module": "^0.1"
     },
     "require-dev": {
         "atlas/cli": "0.4.*@alpha",
