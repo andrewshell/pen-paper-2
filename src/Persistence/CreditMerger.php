@@ -17,5 +17,6 @@ class CreditMerger
                 $original[$key] = $i;
             }
         }
+        $credits = array_values($credits);
     }
 }
