@@ -15,10 +15,6 @@ class Routing extends Module
     {
         $adr = $di->get('radar/adr:adr');
 
-        $adr->get('SlashRedirect', '{path}', 'PenPaper\Domain\SlashRedirect')
-            ->tokens(['path' => '^(.*[^/])$'])
-            ->responder(SlashRedirect\Responder::class);
-
         $adr->get('Home', '/', 'PenPaper\Domain\Home')
             ->defaults(['_view' => 'home.html.twig']);
 

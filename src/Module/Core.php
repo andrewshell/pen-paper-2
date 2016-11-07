@@ -4,6 +4,7 @@ namespace PenPaper\Module;
 use Aura\Di\Container;
 use Cadre\Module\Module;
 use PenPaper\Delivery\DefaultResponder;
+use Psr7Middlewares\Middleware\TrailingSlash;
 use Radar\Adr\Handler\RoutingHandler;
 use Radar\Adr\Handler\ActionHandler;
 use Relay\Middleware\ExceptionHandler;
@@ -45,6 +46,16 @@ class Core extends Module
         $di->params[ExceptionHandler::class] = [
             'exceptionResponse' => $di->lazyNew(Response::class),
         ];
+
+        /** TrailingSlash */
+
+        $di->params[TrailingSlash::class] = [
+            'addSlash' => true,
+        ];
+
+        $di->setters[TrailingSlash::class] = [
+            'redirect' => 301,
+        ];
     }
 
     public function modify(Container $di)
@@ -55,6 +66,7 @@ class Core extends Module
         $adr->middle(ExceptionHandler::class);
         $adr->middle(RoutingHandler::class);
         $adr->middle(ActionHandler::class);
+        $adr->middle(TrailingSlash::class);
 
         $adr->responder(DefaultResponder::class);
     }
