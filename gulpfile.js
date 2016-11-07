@@ -3,11 +3,13 @@ var gulp = require('gulp'),
 
 // task
 gulp.task('less', function () {
-    gulp.src(['./less/style.less']) // path to your file
+    gulp.src([
+        './web/less/style.less'
+    ]) // path to your file
     .pipe(less())
-    .pipe(gulp.dest('./htdocs/css'));
+    .pipe(gulp.dest('./web/css'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['./less/**/*.less'], ['less']);
+    gulp.watch(['./web/less/**/*.less'], ['less']);
 });

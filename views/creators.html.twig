@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'creators', prefix: prefix}) }}
 
 {% if creators | length > 0 %}
-    <ul>
-    {% for creator in creators %}
+    {% set rows = (creators|length / 3)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in creators|batch(rows, false) %}
+        <div class="col-md-4"><ul>
+        {% for creator in column %}
+        {% if creator != false %}
         <li><a href="/creator/{{ creator.creator_id }}/">
             {{ creator.last_name }}{{ creator.first_name ? ', ' : '' }}{{ creator.first_name }}
         </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Creators Found</p>
 {% endif %}

@@ -1,5 +1,15 @@
-<ul class="pagination">
+<ul class="pagination pagination-sm hidden-xs">
 {% for letter in 'A' .. 'Z' %}
     <li{% if prefix == letter %} class="active"{% endif %}><a href="/{{ slug }}/{{ letter }}/">{{ letter }}</a></li>
 {% endfor %}
 </ul>
+<div class="btn-group visible-xs-block clearfix">
+  <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ prefix }} <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    {% for letter in 'A' .. 'Z' %}
+        <li{% if prefix == letter %} class="active"{% endif %}><a href="/{{ slug }}/{{ letter }}/">{{ letter }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
