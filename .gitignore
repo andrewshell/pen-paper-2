@@ -1,5 +1,6 @@
 .DS_Store
 /config/conn.php
+/htdocs/robots.txt
 /node_modules
 /relationships/elements.yml
 /vendor
