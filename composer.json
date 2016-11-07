@@ -11,8 +11,9 @@
         "twig/twig": "^1.25",
         "maximebf/debugbar": "^1.13.0",
         "cadre/atlasorm-debugbar-bridge": "^1.0",
-        "cadre/module": "^0.1",
-        "oscarotero/psr7-middlewares": "^3.18"
+        "cadre/module": "^0.2",
+        "oscarotero/psr7-middlewares": "^3.18",
+        "aura/session": "^2.1"
     },
     "require-dev": {
         "atlas/cli": "0.4.*@alpha",
