@@ -4,6 +4,7 @@ namespace PenPaper\Module;
 use Aura\Di\Container;
 use Cadre\Module\Module;
 use PenPaper\Delivery\DefaultResponder;
+use Psr7Middlewares\Middleware\Robots;
 use Psr7Middlewares\Middleware\TrailingSlash;
 use Radar\Adr\Handler\RoutingHandler;
 use Radar\Adr\Handler\ActionHandler;
@@ -47,6 +48,12 @@ class Core extends Module
             'exceptionResponse' => $di->lazyNew(Response::class),
         ];
 
+        /** Robots */
+
+        $di->params[Robots::class] = [
+            'allow' => !$this->loader()->isDev(),
+        ];
+
         /** TrailingSlash */
 
         $di->params[TrailingSlash::class] = [
@@ -67,6 +74,7 @@ class Core extends Module
         $adr->middle(RoutingHandler::class);
         $adr->middle(ActionHandler::class);
         $adr->middle(TrailingSlash::class);
+        $adr->middle(Robots::class);
 
         $adr->responder(DefaultResponder::class);
     }
