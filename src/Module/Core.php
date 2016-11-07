@@ -91,13 +91,13 @@ class Core extends Module
         $adr = $di->get('radar/adr:adr');
 
         $adr->middle(ResponseSender::class);
+        $adr->middle(Robots::class);
         $adr->middle(ExceptionHandler::class);
+        $adr->middle(TrailingSlash::class);
+        $adr->middle(AuraSession::class);
+        $adr->middle(AttributeMapper::class);
         $adr->middle(RoutingHandler::class);
         $adr->middle(ActionHandler::class);
-        $adr->middle(AttributeMapper::class);
-        $adr->middle(AuraSession::class);
-        $adr->middle(TrailingSlash::class);
-        $adr->middle(Robots::class);
 
         $adr->responder(DefaultResponder::class);
     }
