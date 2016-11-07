@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'game-lines', prefix: prefix}) }}
 
 {% if game_lines | length > 0 %}
-    <ul>
-    {% for game_line in game_lines %}
-        <li><a href="/game-line/{{ game_line.game_line_id }}/">
-            {{ game_line.game_line }}
-        </a></li>
+    {% set rows = (game_lines|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in game_lines|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for game_line in column %}
+        {% if game_line != false %}
+            <li><a href="/game-line/{{ game_line.game_line_id }}/">
+                {{ game_line.game_line }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Publishers Found</p>
 {% endif %}

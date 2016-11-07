@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'rpg-books', prefix: prefix}) }}
 
 {% if rpg_books | length > 0 %}
-    <ul>
-    {% for rpg_book in rpg_books %}
-        <li><a href="/rpg-book/{{ rpg_book.rpg_book_id }}/">
-            {{ rpg_book.title }}
-        </a></li>
+    {% set rows = (rpg_books|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in rpg_books|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for rpg_book in column %}
+        {% if rpg_book != false %}
+            <li><a href="/rpg-book/{{ rpg_book.rpg_book_id }}/">
+                {{ rpg_book.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No RPG Books Found</p>
 {% endif %}

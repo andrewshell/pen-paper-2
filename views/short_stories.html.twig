@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'short-stories', prefix: prefix}) }}
 
 {% if short_stories | length > 0 %}
-    <ul>
-    {% for short_story in short_stories %}
-        <li><a href="/short-story/{{ short_story.short_story_id }}/">
-            {{ short_story.title }}
-        </a></li>
+    {% set rows = (short_stories|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in short_stories|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for short_story in column %}
+        {% if short_story != false %}
+            <li><a href="/short-story/{{ short_story.short_story_id }}/">
+                {{ short_story.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Short Stories Found</p>
 {% endif %}

@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'magazine-titles', prefix: prefix}) }}
 
 {% if magazine_titles | length > 0 %}
-    <ul>
-    {% for magazine_title in magazine_titles %}
-        <li><a href="/magazine-title/{{ magazine_title.magazine_title_id }}/">
-            {{ magazine_title.title }}
-        </a></li>
+    {% set rows = (magazine_titles|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in magazine_titles|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for magazine_title in column %}
+        {% if magazine_title != false %}
+            <li><a href="/magazine-title/{{ magazine_title.magazine_title_id }}/">
+                {{ magazine_title.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Magazine Titles Found</p>
 {% endif %}

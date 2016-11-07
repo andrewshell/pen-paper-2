@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'fiction-books', prefix: prefix}) }}
 
 {% if fiction_books | length > 0 %}
-    <ul>
-    {% for fiction_book in fiction_books %}
-        <li><a href="/fiction-book/{{ fiction_book.fiction_book_id }}/">
-            {{ fiction_book.title }}
-        </a></li>
+    {% set rows = (fiction_books|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in fiction_books|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for fiction_book in column %}
+        {% if fiction_book != false %}
+            <li><a href="/fiction-book/{{ fiction_book.fiction_book_id }}/">
+                {{ fiction_book.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Fiction Books Found</p>
 {% endif %}

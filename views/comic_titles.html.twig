@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'comic-titles', prefix: prefix}) }}
 
 {% if comic_titles | length > 0 %}
-    <ul>
-    {% for comic_title in comic_titles %}
-        <li><a href="/comic-title/{{ comic_title.comic_title_id }}/">
-            {{ comic_title.title }}
-        </a></li>
+    {% set rows = (comic_titles|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in comic_titles|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for comic_title in column %}
+        {% if comic_title != false %}
+            <li><a href="/comic-title/{{ comic_title.comic_title_id }}/">
+                {{ comic_title.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Comic Titles Found</p>
 {% endif %}

@@ -4,13 +4,20 @@
 {{ include('inc/pagination.html.twig', {slug: 'other-games', prefix: prefix}) }}
 
 {% if other_games | length > 0 %}
-    <ul>
-    {% for other_game in other_games %}
-        <li><a href="/other-game/{{ other_game.other_game_id }}/">
-            {{ other_game.title }}
-        </a></li>
+    {% set rows = (other_games|length / 2)|round(0, 'ceil') %}
+    <div class="row">
+    {% for column in other_games|batch(rows, false) %}
+        <div class="col-md-6"><ul>
+        {% for other_game in column %}
+        {% if other_game != false %}
+            <li><a href="/other-game/{{ other_game.other_game_id }}/">
+                {{ other_game.title }}
+            </a></li>
+        {% endif %}
+        {% endfor %}
+        </ul></div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No Other Games Found</p>
 {% endif %}
